@@ -1,0 +1,155 @@
+/* @font-face {
+  font-family: "Favorit";
+  src: url("../fonts/FavoritTrialStd-Medium.eot");
+  src: url("../fonts/FavoritTrialStd-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/FavoritTrialStd-Medium.woff2") format("woff2"),
+    url("../fonts/FavoritTrialStd-Medium.woff") format("woff"),
+    url("../fonts/FavoritTrialStd-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Favorit";
+  src: url("../fonts/FavoritTrialStd-Light.eot");
+  src: url("../fonts/FavoritTrialStd-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/FavoritTrialStd-Light.woff2") format("woff2"),
+    url("../fonts/FavoritTrialStd-Light.woff") format("woff"),
+    url("../fonts/FavoritTrialStd-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+} */
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 4010763, 2021-02-09T11:32:31-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: RigtonVariable by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/variable/
+ * 
+ * Webfont: Rigton-Light by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/light/
+ * 
+ * Webfont: Rigton-LightItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/light-italic/
+ * 
+ * Webfont: Rigton-Book by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/book/
+ * 
+ * Webfont: Rigton-BookItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/book-italic/
+ * 
+ * Webfont: Rigton-Regular by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/regular/
+ * 
+ * Webfont: Rigton-RegularItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/regular-italic/
+ * 
+ * Webfont: Rigton-Medium by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/medium/
+ * 
+ * Webfont: Rigton-MediumItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/medium-italic/
+ * 
+ * Webfont: Rigton-SemiBold by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/semi-bold/
+ * 
+ * Webfont: Rigton-SemiBoldItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/semi-bold-italic/
+ * 
+ * Webfont: Rigton-Bold by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/bold/
+ * 
+ * Webfont: Rigton-BoldItalic by Boyanurd
+ * URL: https://www.myfonts.com/fonts/boyanurd/rigton/bold-italic/
+ * 
+ * 
+ * Webfonts copyright: Copyright © 2019 by Boyan Nurdiansyah. All rights reserved.
+ * 
+ * © 2021 MyFonts Inc
+*/
+
+/* @import must be at top of file, otherwise CSS will not work */
+
+@font-face {
+  font-family: "Rigton-BookItalic";
+  src: url("../fonts/webFonts/RigtonBookItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonBookItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "RigtonVariable";
+  src: url("../fonts/webFonts/RigtonVariable/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonVariable/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-Book";
+  src: url("../fonts/webFonts/RigtonBook/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonBook/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-LightItalic";
+  src: url("../fonts/webFonts/RigtonLightItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonLightItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-Light";
+  src: url("../fonts/webFonts/RigtonLight/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonLight/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-BoldItalic";
+  src: url("../fonts/webFonts/RigtonBoldItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonBoldItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-SemiBoldItalic";
+  src: url("../fonts/webFonts/RigtonSemiBoldItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonSemiBoldItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-Bold";
+  src: url("../fonts/webFonts/RigtonBold/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonBold/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-SemiBold";
+  src: url("../fonts/webFonts/RigtonSemiBold/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonSemiBold/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-MediumItalic";
+  src: url("../fonts/webFonts/RigtonMediumItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonMediumItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-RegularItalic";
+  src: url("../fonts/webFonts/RigtonRegularItalic/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonRegularItalic/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-Medium";
+  src: url("../fonts/webFonts/RigtonMedium/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonMedium/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Rigton-Regular";
+  src: url("../fonts/webFonts/RigtonRegular/font.woff2") format("woff2"),
+    url("../fonts/webFonts/RigtonRegular/font.woff") format("woff");
+}
+
+body,
+html,
+* {
+  font-family: Rigton-Regular, sans-serif;
+  color: #040234;
+}
