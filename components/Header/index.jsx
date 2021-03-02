@@ -1,16 +1,7 @@
 import styled from "styled-components";
-import Link from "next/Link";
-
-const Logo = styled.h3`
-  color: #0800c9;
-  font-size: 24px;
-  line-height: 24px;
-  margin-bottom: 0;
-  font-family: Rigton-Medium;
-  span {
-    color: #0800c9;
-  }
-`;
+import HeaderMenu from "../HeaderMenu";
+import SocialBlock from "../SocialBlock";
+import Logo from "../Logo";
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -30,16 +21,23 @@ const FixHeaderHeight = styled.div`
   width: 100%;
   margin-top: 72px;
 `;
-
+const Socials = styled.div`
+  position: absolute;
+  top: 0;
+  left: 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
 const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <Link href="/">
-          <a>
-            <Logo className="c">tom wise</Logo>
-          </a>
-        </Link>
+        <Socials>
+          <SocialBlock />
+        </Socials>
+        <Logo />
+        <HeaderMenu />
       </HeaderWrapper>
       <FixHeaderHeight />
     </>

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 const Circle = styled.div`
-  position: fixed;
+  position: absolute;
   border-radius: 50%;
   border: 2px solid #040234;
   transition: opacity 0.3s ease 0s;

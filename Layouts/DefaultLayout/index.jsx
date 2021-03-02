@@ -18,6 +18,10 @@ const Chaos = styled.button`
   z-index: 10;
 `;
 
+const PageWrapper = styled.div`
+  margin-bottom: 96px;
+`;
+
 const DefaultLayout = ({ children }) => {
   const [chaos, setChaos] = useState(false);
   const [counter, setCounter] = useState(1);
@@ -57,106 +61,106 @@ const DefaultLayout = ({ children }) => {
     item.style.transitionDuration = time + "s";
   }
 
-  useEffect(() => {
-    if (chaos) {
-      const interval = setInterval(() => {
-        setCounter((counter) => counter + 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    } else {
-      setCounter(1);
-    }
-  }, [chaos]);
+  // useEffect(() => {
+  //   if (chaos) {
+  //     const interval = setInterval(() => {
+  //       setCounter((counter) => counter + 1);
+  //     }, 1000);
+  //     return () => clearInterval(interval);
+  //   } else {
+  //     setCounter(1);
+  //   }
+  // }, [chaos]);
 
-  useEffect(() => {
-    theStuff = document.querySelectorAll(".floater");
-    function isItYourTimeToChange() {
-      const counterSeconds = counter + "s";
-      if (counter > 1) {
-        for (const [key, value] of Object.entries(theStuff)) {
-          if (value.style.transitionDuration === counterSeconds) {
-            addStyles(theStuff[key]);
-          }
-        }
-      }
-    }
-    isItYourTimeToChange();
-  }, [counter]);
+  // useEffect(() => {
+  //   theStuff = document.querySelectorAll(".floater");
+  //   function isItYourTimeToChange() {
+  //     const counterSeconds = counter + "s";
+  //     if (counter > 1) {
+  //       for (const [key, value] of Object.entries(theStuff)) {
+  //         if (value.style.transitionDuration === counterSeconds) {
+  //           addStyles(theStuff[key]);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   isItYourTimeToChange();
+  // }, [counter]);
 
-  useEffect(() => {
-    theStuff = document.querySelectorAll(".floater");
-    function elementsGoWild() {
-      for (let i = 0; i < theStuff.length; i++) {
-        const theTimeThatControlsTheSpeed = getRandomDuration();
-        const roundedTime = Math.round(theTimeThatControlsTheSpeed);
-        // When the user clicks on an element
-        theStuff[i].onclick = function () {
-          theStuff[i].style.padding = "36px";
-          addStyles(theStuff[i]);
-          addTime(theStuff[i], roundedTime);
-        };
+  // useEffect(() => {
+  //   theStuff = document.querySelectorAll(".floater");
+  //   function elementsGoWild() {
+  //     for (let i = 0; i < theStuff.length; i++) {
+  //       const theTimeThatControlsTheSpeed = getRandomDuration();
+  //       const roundedTime = Math.round(theTimeThatControlsTheSpeed);
+  //       // When the user clicks on an element
+  //       theStuff[i].onclick = function () {
+  //         theStuff[i].style.padding = "36px";
+  //         addStyles(theStuff[i]);
+  //         addTime(theStuff[i], roundedTime);
+  //       };
 
-        //defualt fire
-        theStuff[i].style.padding = "36px";
-        addStyles(theStuff[i]);
-        addTime(theStuff[i], roundedTime);
-      }
-    }
-    function elementsBackToWork() {
-      for (let i = 0; i < theStuff.length; i++) {
-        addStyles(theStuff[i]);
-        theStuff[i].style.padding = "inherit";
-        theStuff[i].style.transitionDuration = "1.2s";
-      }
-    }
-    if (chaos) {
-      elementsGoWild();
-    } else {
-      elementsBackToWork();
-    }
-  }, [chaos]);
+  //       //defualt fire
+  //       theStuff[i].style.padding = "36px";
+  //       addStyles(theStuff[i]);
+  //       addTime(theStuff[i], roundedTime);
+  //     }
+  //   }
+  //   function elementsBackToWork() {
+  //     for (let i = 0; i < theStuff.length; i++) {
+  //       addStyles(theStuff[i]);
+  //       theStuff[i].style.padding = "inherit";
+  //       theStuff[i].style.transitionDuration = "1.2s";
+  //     }
+  //   }
+  //   if (chaos) {
+  //     elementsGoWild();
+  //   } else {
+  //     elementsBackToWork();
+  //   }
+  // }, [chaos]);
 
-  /// Fires on first load
-  useEffect(() => {
-    function wrapChars(str) {
-      // return str.replace(/\w/g, <span className="c">$&</span>);
-      const replacement = str.replace(
-        /./gm,
-        "<span class=" + "floater" + ">$&</span>"
-      );
-      return replacement;
-    }
-    function wrapText() {
-      const theTest = document.querySelectorAll(".c");
+  // /// Fires on first load
+  // useEffect(() => {
+  //   function wrapChars(str) {
+  //     // return str.replace(/\w/g, <span className="c">$&</span>);
+  //     const replacement = str.replace(
+  //       /./gm,
+  //       "<span class=" + "floater" + ">$&</span>"
+  //     );
+  //     return replacement;
+  //   }
+  //   function wrapText() {
+  //     const theTest = document.querySelectorAll(".c");
 
-      for (let i = 0; i < theTest.length; i++) {
-        const theTestSpanned = wrapChars(theTest[i].innerHTML);
-        theTest[i].innerHTML = theTestSpanned;
-      }
-    }
+  //     for (let i = 0; i < theTest.length; i++) {
+  //       const theTestSpanned = wrapChars(theTest[i].innerHTML);
+  //       theTest[i].innerHTML = theTestSpanned;
+  //     }
+  //   }
 
-    wrapText();
-  }, []);
+  //   wrapText();
+  // }, []);
 
-  useEffect(() => {
-    theStuff = document.querySelectorAll(".floater");
+  // useEffect(() => {
+  //   theStuff = document.querySelectorAll(".floater");
 
-    function initialLoadUp() {
-      for (let i = 0; i < theStuff.length; i++) {
-        const theTimeThatControlsTheSpeed = getRandomDuration();
-        const roundedTime = Math.round(theTimeThatControlsTheSpeed);
-        //defualt fire
-        addStyles(theStuff[i]);
-        addTime(theStuff[i], roundedTime);
-      }
-    }
-    initialLoadUp();
-  }, []);
+  //   function initialLoadUp() {
+  //     for (let i = 0; i < theStuff.length; i++) {
+  //       const theTimeThatControlsTheSpeed = getRandomDuration();
+  //       const roundedTime = Math.round(theTimeThatControlsTheSpeed);
+  //       //defualt fire
+  //       addStyles(theStuff[i]);
+  //       addTime(theStuff[i], roundedTime);
+  //     }
+  //   }
+  //   initialLoadUp();
+  // }, []);
 
   return (
-    <>
+    <PageWrapper>
       <Header />
-      <h1>{counter}</h1>
+      {/* <h1>{counter}</h1> */}
       <Chaos
         onClick={() => {
           setChaos((i) => !i);
@@ -168,7 +172,7 @@ const DefaultLayout = ({ children }) => {
       <main>{children}</main>
       <Footer />
       <MouseCircle />
-
+      {/* 
       <style jsx global>
         {`
           .floater {
@@ -180,8 +184,8 @@ const DefaultLayout = ({ children }) => {
             border-radius: ${chaos ? "1000px" : "unset"};
           }
         `}
-      </style>
-    </>
+      </style> */}
+    </PageWrapper>
   );
 };
 

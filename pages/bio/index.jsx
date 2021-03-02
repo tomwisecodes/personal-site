@@ -29,14 +29,14 @@ const BioPage = () => {
                 adding maximum efficiency and value to digital product teams.
               </p>
               <p>
-                Currently, I am leading the UX/UI design and Front End in a team
-                supporting a government-funded COVID response in the Education
-                sector(Oak National Academy). Being the first designer and the
-                first developer on the project my dual passions allowed us to
-                put the first product out within 7 days of the first square
-                drawn in Figma. Since then, our small but gloriously talented
-                team has scaled to creating 3 apps welcoming 3 million users
-                learning from home per week using over 10,000 lessons.
+                Currently, I am leading the UX design, UI design and Front End
+                in a team supporting a government-funded COVID response in the
+                Education sector(Oak National Academy). Being the first designer
+                and the first developer on the project my dual passions allowed
+                us to put the first product out within 7 days of the first
+                square drawn in Figma. Since then, our small but gloriously
+                talented team has scaled to creating 3 apps welcoming 3 million
+                users learning from home per week using over 10,000 lessons.
               </p>
               <p>
                 Previously to Oak I was working at Pentlands Brands innovation
