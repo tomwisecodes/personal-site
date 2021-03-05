@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import FlexWrapper from "../FlexWrapper";
 import styled from "styled-components";
 import { useRouter } from "next/router";

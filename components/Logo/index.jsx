@@ -3,7 +3,7 @@ import Dimond from "../../assets/svg/shapes/dimond.svg";
 import Triangle from "../../assets/svg/shapes/triangle.svg";
 import Circle from "../../assets/svg/shapes/circle.svg";
 import styled from "styled-components";
-import Link from "next/Link";
+import Link from "next/link";
 import FlexWrapper from "../FlexWrapper";
 
 const LogoText = styled.h3`

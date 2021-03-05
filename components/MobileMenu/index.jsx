@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Link from "next/Link";
+import Link from "next/link";
 import { useContext } from "react";
 import { BlobContext } from "../Context/BlobContext";
 import { useRouter } from "next/router";

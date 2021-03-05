@@ -3,7 +3,7 @@ import { Col, Row } from "../components/Grid";
 import Container from "../components/Container";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import styled from "styled-components";
-import Link from "next/Link";
+import Link from "next/link";
 import { BlobContext } from "../components/Context/BlobContext";
 import Emoji from "react-apple-emojis";
 
