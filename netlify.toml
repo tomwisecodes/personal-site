@@ -1,4 +1,3 @@
 [build]
-  command: "CI= run build"
-commandOrigin= "config"
-publish= "/opt/build/repo/out"
+  command = "yarn build && yarn next export"
+  publish = "out"
