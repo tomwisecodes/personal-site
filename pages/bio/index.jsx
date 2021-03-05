@@ -2,7 +2,10 @@ import { Col, Row } from "../../components/Grid";
 import Container from "../../components/Container";
 import DefaultLayout from "../../Layouts/DefaultLayout";
 import styled from "styled-components";
-
+import Image from "next/image";
+import FlexWrapper from "../../components/FlexWrapper";
+import { ArrowLeft, ArrowDown } from "react-ikonate";
+import PageTitle from "../../components/PageTitle";
 const BioWrap = styled(Container)``;
 
 const SpaceBetween = styled(Row)`
@@ -14,19 +17,42 @@ const BioPage = () => {
     <>
       <DefaultLayout>
         <BioWrap>
-          <Row>
+          <PageTitle title="Bio" />
+
+          <Row style={{ marginTop: `72px`, marginBottom: `72px` }}>
             <Col width={[1]}>
-              <h1 style={{ marginTop: `72px` }}>I'm Tom Wise</h1>
+              <FlexWrapper
+                justify="flex-start"
+                childrenMarginRight="24px"
+                align="center"
+              >
+                <Image
+                  src="/images/tom-watermelon.jpg"
+                  width="144px"
+                  height="144px"
+                />
+                <ArrowLeft
+                  style={{
+                    marginLeft: `24px`,
+                    marginRight: `6px`,
+                    width: `24px`,
+                    height: `24px`,
+                  }}
+                />
+                <h1 style={{ marginBottom: `0px` }}>Tom Wise!!!</h1>
+              </FlexWrapper>
             </Col>
           </Row>
           <SpaceBetween>
             <Col width={[1, 1, 5 / 12]}>
-              <h2>inside my work</h2>
+              <h2>Inside my work:</h2>
               <p>
-                I am a product designer and developer with plentiful experience
-                in UX, UI, Branding and Front End Development. I like to work in
-                roles that allow me to jump between design, research and code
-                adding maximum efficiency and value to digital product teams.
+                <b>I design and I code:</b>
+                <br /> I am a product designer and developer with plentiful
+                experience in UX, UI, Branding and Front End Development. I like
+                to work in roles that allow me to jump between design, research
+                and code adding maximum efficiency and value to digital product
+                teams.
               </p>
               <p>
                 Currently, I am leading the UX design, UI design and Front End
@@ -48,7 +74,7 @@ const BioPage = () => {
               </p>
             </Col>
             <Col width={[1, 1, 5 / 12]}>
-              <h2>inside my work</h2>
+              <h2>Outside my work:</h2>
               <p>
                 I was born and raised in Brighton before moving to Manchester,
                 and most recently Dulwich in South East London. I'm a passionate
@@ -62,8 +88,8 @@ const BioPage = () => {
                 anyone to listen to me talk about niche music I love.
               </p>
               <p>
-                If you fancy joining me for a run, or joining my crochet circle,
-                click here.{" "}
+                If you fancy joining me for a run, or my crochet circle, click
+                here.{" "}
               </p>
             </Col>
           </SpaceBetween>

@@ -135,6 +135,9 @@ body {
   -moz-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  width: 100vw;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .clear {
@@ -145,7 +148,13 @@ html {
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 * {
   box-sizing: border-box;
+}
+*:focus {
+  outline: #0800c9 solid 1px;
 }

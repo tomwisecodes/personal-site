@@ -4,6 +4,8 @@ import { Box } from "reflexbox";
 
 const Container = styled(Box)`
   max-width: 1020px;
+  padding-left: 6px;
+  padding-right: 6px;
 `;
 
 Container.defaultProps = {

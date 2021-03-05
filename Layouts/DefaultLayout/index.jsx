@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import MouseCircle from "../../components/MouseCircle";
 import styled from "styled-components";
+import ContactBlob from "../../components/ContactBlob";
 
 const Chaos = styled.button`
   position: fixed;
@@ -20,11 +21,15 @@ const Chaos = styled.button`
 
 const PageWrapper = styled.div`
   margin-bottom: 96px;
+  @media (max-width: 900px) {
+    margin-bottom: 0;
+  }
 `;
 
 const DefaultLayout = ({ children }) => {
   const [chaos, setChaos] = useState(false);
   const [counter, setCounter] = useState(1);
+
   let theStuff = null;
   function getPlusOrMinus() {
     return Math.round(Math.random()) * 2 - 1;
@@ -157,21 +162,38 @@ const DefaultLayout = ({ children }) => {
   //   initialLoadUp();
   // }, []);
 
+  function isTouchDevice() {
+    if (typeof window !== "undefined") {
+      return (
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+      );
+    }
+    return null;
+  }
+  useEffect(() => {
+    isTouchDevice();
+  }, []);
   return (
     <PageWrapper>
       <Header />
       {/* <h1>{counter}</h1> */}
-      <Chaos
+      {/* <Chaos
         onClick={() => {
           setChaos((i) => !i);
         }}
         chaos={chaos}
       >
         {chaos ? "Clean up" : "Start some chaos"}
-      </Chaos>
+      </Chaos> */}
       <main>{children}</main>
       <Footer />
-      <MouseCircle />
+
+      <ContactBlob />
+
+      {isTouchDevice && <MouseCircle />}
+
       {/* 
       <style jsx global>
         {`

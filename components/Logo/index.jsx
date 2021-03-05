@@ -34,10 +34,23 @@ const FlexWrap = styled(FlexWrapper)`
   }
 `;
 
+const LinkAnchor = styled.a`
+  background-color: white;
+  position: relative;
+  z-index: 50;
+  padding: 12px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  @media (max-width: 769px) {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+`;
+
 const Logo = () => {
   return (
     <Link href="/">
-      <a>
+      <LinkAnchor>
         <>
           <LogoText className="c">TOM WISE</LogoText>
           <FlexWrap align="center" childrenMarginRight="6.8px">
@@ -49,7 +62,7 @@ const Logo = () => {
             <p>{"/>"}</p>
           </FlexWrap>
         </>
-      </a>
+      </LinkAnchor>
     </Link>
   );
 };

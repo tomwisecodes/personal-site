@@ -20,8 +20,8 @@ const theme = {
       lineHeight: "12px",
     },
     "p, a, li, input, textarea": {
-      fontSize: "17px",
-      lineHeight: "24px",
+      fontSize: "20px",
+      lineHeight: "30px",
       fontWeight: "400",
     },
     p: {
@@ -40,7 +40,7 @@ const theme = {
     "h1,h2,h3,h4,h5,h6": {
       fontWeight: 500,
     },
-    h1: {
+    "h1, .h1": {
       fontSize: "24px",
       lineHeight: "36px",
     },
