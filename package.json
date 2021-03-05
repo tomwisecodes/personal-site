@@ -27,8 +27,5 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  },
-  "devDependencies": {
-    "@netlify/plugin-nextjs": "^2.0.1"
   }
 }

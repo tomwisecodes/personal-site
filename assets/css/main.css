@@ -156,5 +156,7 @@ html {
   box-sizing: border-box;
 }
 *:focus {
-  outline: #0800c9 solid 1px;
+  outline: none;
+  box-shadow: white 0px 0px 0px 2px, #0800c9 0px 0px 0px 6px,
+    white 0px 0px 0px 8px;
 }
