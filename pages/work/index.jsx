@@ -7,7 +7,7 @@ import styled, { keyframes } from "styled-components";
 import clients from "../../data";
 import { Close, ArrowDown } from "react-ikonate";
 import ClientThumbWrap from "../../components/ClientThumbWrap";
-import Image from "next/Image";
+import Image from "next/image";
 import { BlobContext } from "../../components/Context/BlobContext";
 import PageTitle from "../../components/PageTitle";
 
