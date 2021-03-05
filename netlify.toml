@@ -1,4 +1,4 @@
 [build]
-  command: CI= run build
-commandOrigin: config
-publish: /opt/build/repo/out
+  command: "CI= run build"
+commandOrigin= "config"
+publish= "/opt/build/repo/out"
