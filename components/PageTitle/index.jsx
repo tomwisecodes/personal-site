@@ -3,13 +3,7 @@ import { ArrowDown } from "react-ikonate";
 import { Col, Row } from "../Grid";
 import styled from "styled-components";
 
-const MobileOverRide = styled(FlexWrapper)`
-  @media (max-width: 769px) {
-    align-items: flex-start;
-    padding-left: 6px;
-    margin-top: 6px;
-  }
-`;
+const MobileOverRide = styled(FlexWrapper)``;
 
 const PageTitle = ({ title }) => {
   return (

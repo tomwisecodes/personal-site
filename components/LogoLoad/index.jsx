@@ -1,7 +1,7 @@
-import Square from "../../assets/svg/shapes/square.svg";
-import Dimond from "../../assets/svg/shapes/dimond.svg";
-import Triangle from "../../assets/svg/shapes/triangle.svg";
-import Circle from "../../assets/svg/shapes/circle.svg";
+import Square from "../../assets/svg/shapes/squareBigRed.svg";
+import Dimond from "../../assets/svg/shapes/squareBig.svg";
+import Triangle from "../../assets/svg/shapes/triBig.svg";
+import Circle from "../../assets/svg/shapes/cirBig.svg";
 import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 import FlexWrapper from "../FlexWrapper";
@@ -110,7 +110,7 @@ const LoadWrap = styled.a`
   align-items: center;
   flex-direction: column;
   cursor: pointer;
-  transform: scale(3);
+
   animation: ${popOff};
   animation-duration: 0.6s;
   animation-delay: 2.9s;

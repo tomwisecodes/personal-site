@@ -10,6 +10,7 @@ import ClientThumbWrap from "../../components/ClientThumbWrap";
 import Image from "next/image";
 import { BlobContext } from "../../components/Context/BlobContext";
 import PageTitle from "../../components/PageTitle";
+import Link from "next/link";
 
 const CuteMessageWrap = styled.div`
   height: 100%;
@@ -77,17 +78,12 @@ const FilterWork = styled.button`
 `;
 
 const ViewContainer = styled.div`
-  overflow-x: scroll;
   height: 100%;
   width: 100%;
-  .viewInner {
-    display: flex;
-    width: ${(props) => props.width * 400 + "px"};
-  }
 `;
 const ImgWrapper = styled.div`
   position: relative;
-  width: 400px;
+  width: 100%;
   height: 400px;
   cursor: pointer;
   img {
@@ -102,7 +98,6 @@ const Work = () => {
   const [discipline, setDiscipline] = useState(null);
   const [viewer, setViewer] = useState(false);
   const [blur, setBlur] = useState(false);
-  const [focusClient, setFocusClient] = useState(false);
   const { setContact, contactTextSource, setContactTextSource } = useContext(
     BlobContext
   );
@@ -110,6 +105,62 @@ const Work = () => {
   function filterClickHandler(disc) {
     setDiscipline(disc);
     setViewer(false);
+  }
+
+  function clickThroughToWork() {
+    if (viewer) {
+      return (
+        <>
+          <FlexWrapper justify="space-between">
+            <h2 style={{ fontSize: `36px` }}>{viewer.clientName}</h2>
+            <Close
+              className="hover"
+              style={{ width: `36px`, height: `36px`, cursor: `pointer` }}
+              onClick={() => setViewer(false)}
+            />
+          </FlexWrapper>
+          <ViewContainer width={clients.length} className="hover">
+            <ImgWrapper
+              onClick={() => {
+                setContact(true);
+                setContactTextSource("portfolio");
+              }}
+            >
+              <Image
+                src={viewer.imageThumb}
+                alt="Picture of the author"
+                layout="fill"
+              />
+            </ImgWrapper>
+            <p style={{ marginTop: `36px` }}>
+              This is som text about some stuff that goes on fever like this and
+              it goes on on onon on.
+            </p>
+            <button
+              onClick={() => {
+                setContact(true);
+                setContactTextSource("portfolio");
+              }}
+            >
+              More about this project
+            </button>
+          </ViewContainer>
+        </>
+      );
+    }
+    return (
+      <GridWrap wrap={true} justify="flex-start">
+        {clients.map((client) => (
+          <ClientThumbWrap
+            setViewer={setViewer}
+            client={client}
+            blur={blur}
+            key={client.id}
+            discipline={discipline}
+          />
+        ))}
+      </GridWrap>
+    );
   }
 
   return (
@@ -165,48 +216,8 @@ const Work = () => {
               <CuteMessageWrap>
                 <h3>What would you like to see?</h3>
               </CuteMessageWrap>
-            ) : viewer ? (
-              <>
-                <FlexWrapper justify="space-between">
-                  <h2 style={{ marginBottom: `0px` }}>{focusClient}</h2>
-                  <Close
-                    className="hover"
-                    style={{ width: `36px`, height: `36px`, cursor: `pointer` }}
-                    onClick={() => setViewer(false)}
-                  />
-                </FlexWrapper>
-                <ViewContainer width={clients.length} className="hover">
-                  <div className="viewInner">
-                    {clients.map((client) => (
-                      <ImgWrapper
-                        onMouseEnter={() => setFocusClient(client.clientName)}
-                        onClick={() => {
-                          setContact(true);
-                          setContactTextSource("portfolio");
-                        }}
-                      >
-                        <Image
-                          src={client.imageThumb}
-                          alt="Picture of the author"
-                          layout="fill"
-                        />
-                      </ImgWrapper>
-                    ))}
-                  </div>
-                </ViewContainer>
-              </>
             ) : (
-              <GridWrap wrap={true} justify="flex-start">
-                {clients.map((client) => (
-                  <ClientThumbWrap
-                    setViewer={setViewer}
-                    client={client}
-                    blur={blur}
-                    key={client.id}
-                    discipline={discipline}
-                  />
-                ))}
-              </GridWrap>
+              clickThroughToWork()
             )}
           </Col>
         </MainRow>

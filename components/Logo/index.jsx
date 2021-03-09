@@ -39,12 +39,8 @@ const LinkAnchor = styled.a`
   position: relative;
   z-index: 50;
   padding: 12px 24px;
-  border-radius: 20px;
+  border-radius: 100px;
   cursor: pointer;
-  @media (max-width: 769px) {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
 `;
 
 const Logo = () => {

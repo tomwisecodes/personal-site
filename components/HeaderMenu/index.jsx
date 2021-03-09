@@ -77,6 +77,18 @@ const HeaderMenu = () => {
           Work
         </a>
       </Link>
+      <Link href="/tech" className="c">
+        <a
+          className="c"
+          style={
+            router.pathname.includes("tech")
+              ? { color: `#CC4537`, textDecoration: `underline` }
+              : null
+          }
+        >
+          Tech
+        </a>
+      </Link>
       <ContactButton
         onClick={() => {
           setContact(true);

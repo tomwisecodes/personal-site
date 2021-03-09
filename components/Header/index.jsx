@@ -16,9 +16,6 @@ const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: center;
   z-index: 100;
-  @media (max-width: 769px) {
-    justify-content: space-between;
-  }
 `;
 
 const FixHeaderHeight = styled.div`
@@ -46,6 +43,9 @@ const Socials = styled.div`
 const MobileMenuToggle = styled.button`
   display: none;
   @media (max-width: 769px) {
+    position: absolute;
+    top: 6px;
+    right: 6px;
     display: block;
     background-color: transparent;
     border: none;
@@ -67,6 +67,7 @@ const Header = () => {
         <Socials>
           <SocialBlock />
         </Socials>
+
         <Logo />
         <HeaderMenu />
         <MobileMenuToggle onClick={() => setToggleMenu((i) => !i)}>

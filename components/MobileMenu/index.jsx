@@ -52,14 +52,18 @@ const SocialWrap = styled.div`
   background-color: #0800c9;
 `;
 const CloseMenuArea = styled.div`
-  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 30vh;
-  background-color: transparent;
   z-index: 100;
-  display: ${(props) => (props.toggleMenu ? "block" : "none")};
+  display: ${(props) => (props.toggleMenu ? "flex" : "none")};
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  color: #0800c9;
 `;
 
 <ContactButton
@@ -79,7 +83,9 @@ const MobileMenu = ({ toggleMenu, setToggleMenu }) => {
       <CloseMenuArea
         toggleMenu={toggleMenu}
         onClick={() => setToggleMenu(false)}
-      />
+      >
+        Close
+      </CloseMenuArea>
       <MobileMenuWrap toggleMenu={toggleMenu}>
         <Link href="/bio">
           <a

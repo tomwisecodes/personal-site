@@ -52,7 +52,7 @@ const ClientThumbWrap = ({ setViewer, client, blur, discipline }) => {
     <ClientThumb
       className="hover"
       key={client.id}
-      onClick={() => setViewer(true)}
+      onClick={() => setViewer(client)}
       display={
         ((client.ux && discipline === "ux") ||
           (client.graphic && discipline === "graphic") ||

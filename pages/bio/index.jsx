@@ -12,6 +12,12 @@ const SpaceBetween = styled(Row)`
   justify-content: space-between;
 `;
 
+const ImgWrap = styled.div`
+  img {
+    object-fit: cover;
+  }
+`;
+
 const BioPage = () => {
   return (
     <>
@@ -26,11 +32,14 @@ const BioPage = () => {
                 childrenMarginRight="24px"
                 align="center"
               >
-                <Image
-                  src="/images/tom-watermelon.jpg"
-                  width="144px"
-                  height="144px"
-                />
+                <ImgWrap>
+                  <Image
+                    src="/images/tom-watermelon.jpg"
+                    width="144px"
+                    height="144px"
+                  />
+                </ImgWrap>
+
                 <ArrowLeft
                   style={{
                     marginLeft: `24px`,
