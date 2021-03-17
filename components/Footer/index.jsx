@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 import Emoji from "react-apple-emojis";
+import { useRouter } from "next/router";
 
 const FooterWrapper = styled.footer`
   position: fixed;
@@ -10,8 +11,8 @@ const FooterWrapper = styled.footer`
   width: 1600px;
   min-width: 100vw;
   height: 48px;
-  border-top: solid 1px #040234;
-  background-color: white;
+
+  background-color: transparent;
   display: flex;
   overflow-x: hidden;
   @media (max-width: 900px) {
@@ -36,6 +37,7 @@ const FooterInner = styled.div`
   font-weight: 100;
   align-items: center;
   padding: 0 24px;
+  padding-bottom: 6px;
   height: 100%;
   width: 100%;
   animation: ${footerMoving};
@@ -67,6 +69,7 @@ const FooterInnerTwo = styled.div`
   font-weight: 100;
   align-items: center;
   padding: 0 24px;
+  padding-bottom: 6px;
   height: 100%;
   width: 100%;
   animation: ${footerMoving};
@@ -111,8 +114,31 @@ const MobileFooterContent = styled.div`
   }
 `;
 
+const StaticFooter = styled.footer`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 48px;
+  margin-top: 96px;
+  a {
+    color: #0800c9;
+    img {
+      margin-right: 6px;
+    }
+  }
+  p {
+    margin-top: 36px;
+  }
+  a,
+  p {
+    font-size: 20px;
+  }
+`;
+
 const Footer = () => {
-  return (
+  const router = useRouter();
+  return router.pathname === "/" ? (
     <FooterWrapper>
       <FooterInner>
         <a href="mailto:hello@tomwise.me" target="_blank">
@@ -157,6 +183,23 @@ const Footer = () => {
         </a>
       </MobileFooterContent>
     </FooterWrapper>
+  ) : (
+    <StaticFooter>
+      <a href="mailto:hello@tomwise.me" target="_blank">
+        <Emoji
+          name="man-technologist"
+          width={36}
+          style={{ marginBottom: `-4px` }}
+        />
+        hello@tomwise.me
+      </a>
+      <a href="tel:079176 21285" target="_blank">
+        <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
+        +(44) 79176 21285
+      </a>
+
+      <p>© Tom Wise 2021</p>
+    </StaticFooter>
   );
 };
 

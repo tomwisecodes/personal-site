@@ -7,26 +7,44 @@ import { BlobContext } from "../Context/BlobContext";
 
 const LinksWrapper = styled(FlexWrapper)`
   background-color: white;
-  border-radius: 100px;
-  position: absolute;
-  right: 24px;
   height: 100%;
   display: flex;
   align-items: center;
-  line-height: 30px;
+
   @media (max-width: 769px) {
     display: none;
   }
-  a {
+  a,
+  button {
     cursor: pointer;
-    font-size: 22px;
+    font-size: 18px;
     color: #0800c9;
-    padding: 0 12px;
+    min-width: 120px;
+    width: 25%;
+    text-align: center;
+    height: 100%;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.green {
+      background-color: #0ac959;
+      color: #080559;
+    }
+    &.purple {
+      background-color: #5859cc;
+      color: #ffffff;
+    }
+    &.red {
+      background-color: #c92014;
+      color: #ffffff;
+    }
+    &.yellow {
+      background-color: #c9ab14;
+      color: #080559;
+    }
     :hover {
       text-decoration: underline;
-    }
-    :focus {
-      outline: #0800c9 solid 1px;
     }
   }
 `;
@@ -41,9 +59,6 @@ const ContactButton = styled.button`
   :hover {
     text-decoration: underline;
   }
-  :focus {
-    outline: #0800c9 solid 1px;
-  }
 `;
 
 const HeaderMenu = () => {
@@ -52,44 +67,54 @@ const HeaderMenu = () => {
   const { setContact, setContactTextSource } = useContext(BlobContext);
 
   return (
-    <LinksWrapper justify="space-around" childrenMarginRight="12px">
+    <LinksWrapper justify="space-around">
       <Link href="/bio">
         <a
-          className="c"
+          className="c purple"
           style={
             router.pathname.includes("bio")
-              ? { color: `#CC4537`, textDecoration: `underline` }
+              ? {
+                  backgroundColor: `#f8f8f8`,
+                  color: `#0800c9`,
+                }
               : null
           }
         >
           Bio
         </a>
       </Link>
-      <Link href="/work" className="c">
+      <Link href="/work">
         <a
-          className="c"
+          className="c green"
           style={
             router.pathname.includes("work")
-              ? { color: `#CC4537`, textDecoration: `underline` }
+              ? {
+                  backgroundColor: `#f8f8f8`,
+                  color: `#0800c9`,
+                }
               : null
           }
         >
           Work
         </a>
       </Link>
-      <Link href="/tech" className="c">
+      <Link href="/tech">
         <a
-          className="c"
+          className="c red"
           style={
             router.pathname.includes("tech")
-              ? { color: `#CC4537`, textDecoration: `underline` }
+              ? {
+                  backgroundColor: `#f8f8f8`,
+                  color: `#0800c9`,
+                }
               : null
           }
         >
-          Tech
+          Skills
         </a>
       </Link>
       <ContactButton
+        className="yellow"
         onClick={() => {
           setContact(true);
           setContactTextSource("contact");

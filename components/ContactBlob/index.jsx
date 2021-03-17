@@ -29,6 +29,13 @@ const BlobWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  img,
+  a > svg {
+    animation-delay: 0s;
+    animation-duration: 0s;
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
   > svg {
     transform: scale(0);
     position: relative;
@@ -53,7 +60,7 @@ const ContactDeets = styled.div`
   left: calc(50% - 300px);
   max-width: 600px;
   transition-duration: 0.2s;
-  transition-delay: 1.6s;
+  transition-delay: ${(props) => (props.contact ? "1.6s" : "0s")};
   transition-timing-function: ease-in-out;
   visibility: hidden;
   visibility: ${(props) => props.contact && "visible"};
@@ -140,7 +147,6 @@ const CloseWrapper = styled.div`
   display: ${(props) => (props.contact ? "flex" : "none")};
   align-items: center;
   justify-content: center;
-
   svg {
     width: 80%;
     height: 80%;
@@ -160,6 +166,25 @@ const ContactBlob = () => {
   const { contact, setContact, contactTextSource } = useContext(BlobContext);
   console.log("this", contactTextSource);
   const contactTextHandler = () => {
+    if (contactTextSource === "social") {
+      return (
+        <>
+          <h2 className="h1">
+            <Emoji
+              name="man-running"
+              width={36}
+              style={{ marginBottom: `0px` }}
+            />
+            <br />
+            Hello.{" "}
+          </h2>
+          <p>
+            If you want to get a hold of me for any reason please use one of the
+            channels below!
+          </p>
+        </>
+      );
+    }
     if (contactTextSource === "portfolio") {
       return (
         <>

@@ -5,12 +5,9 @@ import Container from "../../components/Container";
 import FlexWrapper from "../../components/FlexWrapper";
 import styled, { keyframes } from "styled-components";
 import clients from "../../data";
-import { Close, ArrowDown } from "react-ikonate";
-import ClientThumbWrap from "../../components/ClientThumbWrap";
-import Image from "next/image";
 import { BlobContext } from "../../components/Context/BlobContext";
 import PageTitle from "../../components/PageTitle";
-import Link from "next/link";
+import WorkDisplayer from "../../components/WorkDisplayer";
 
 const CuteMessageWrap = styled.div`
   height: 100%;
@@ -25,11 +22,6 @@ const BackgroundAcross = keyframes`
   } 100% {
     width: 100%;
   }
-`;
-
-const GridWrap = styled(FlexWrapper)`
-  margin-left: -12px;
-  margin-right: -12px;
 `;
 
 const FilterWorkBg = styled.div``;
@@ -77,90 +69,24 @@ const FilterWork = styled.button`
   }
 `;
 
-const ViewContainer = styled.div`
-  height: 100%;
-  width: 100%;
-`;
-const ImgWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 400px;
-  cursor: pointer;
-  img {
-    object-fit: cover;
-  }
-`;
 const MainRow = styled(Row)`
   padding-top: 100px;
   min-height: calc(100vh - 172px);
 `;
+
+const FilterGroup = styled(FlexWrapper)`
+  margin-bottom: 48px;
+`;
+
 const Work = () => {
   const [discipline, setDiscipline] = useState(null);
   const [viewer, setViewer] = useState(false);
   const [blur, setBlur] = useState(false);
-  const { setContact, contactTextSource, setContactTextSource } = useContext(
-    BlobContext
-  );
+  const { setContact, setContactTextSource } = useContext(BlobContext);
 
   function filterClickHandler(disc) {
     setDiscipline(disc);
     setViewer(false);
-  }
-
-  function clickThroughToWork() {
-    if (viewer) {
-      return (
-        <>
-          <FlexWrapper justify="space-between">
-            <h2 style={{ fontSize: `36px` }}>{viewer.clientName}</h2>
-            <Close
-              className="hover"
-              style={{ width: `36px`, height: `36px`, cursor: `pointer` }}
-              onClick={() => setViewer(false)}
-            />
-          </FlexWrapper>
-          <ViewContainer width={clients.length} className="hover">
-            <ImgWrapper
-              onClick={() => {
-                setContact(true);
-                setContactTextSource("portfolio");
-              }}
-            >
-              <Image
-                src={viewer.imageThumb}
-                alt="Picture of the author"
-                layout="fill"
-              />
-            </ImgWrapper>
-            <p style={{ marginTop: `36px` }}>
-              This is som text about some stuff that goes on fever like this and
-              it goes on on onon on.
-            </p>
-            <button
-              onClick={() => {
-                setContact(true);
-                setContactTextSource("portfolio");
-              }}
-            >
-              More about this project
-            </button>
-          </ViewContainer>
-        </>
-      );
-    }
-    return (
-      <GridWrap wrap={true} justify="flex-start">
-        {clients.map((client) => (
-          <ClientThumbWrap
-            setViewer={setViewer}
-            client={client}
-            blur={blur}
-            key={client.id}
-            discipline={discipline}
-          />
-        ))}
-      </GridWrap>
-    );
   }
 
   return (
@@ -168,7 +94,7 @@ const Work = () => {
       <Container>
         <PageTitle title="Work" />
         <MainRow>
-          <Col width={[1, 1 / 2, 5 / 12]}>
+          <Col width={[1, 1, 5 / 12]}>
             <p
               style={{
                 fontSize: `36px`,
@@ -178,7 +104,7 @@ const Work = () => {
             >
               I am a:
             </p>
-            <FlexWrapper direction="column">
+            <FilterGroup direction="column">
               <FilterWorkBg order={1}>
                 <FilterWork
                   onClick={() => filterClickHandler("ux")}
@@ -209,15 +135,23 @@ const Work = () => {
                   Developer
                 </FilterWork>
               </FilterWorkBg>
-            </FlexWrapper>
+            </FilterGroup>
           </Col>
-          <Col width={[1, 1 / 2, 7 / 12]}>
+          <Col width={[1, 1, 7 / 12]}>
             {!discipline ? (
               <CuteMessageWrap>
                 <h3>What would you like to see?</h3>
               </CuteMessageWrap>
             ) : (
-              clickThroughToWork()
+              <WorkDisplayer
+                viewer={viewer}
+                clients={clients}
+                setViewer={setViewer}
+                blur={blur}
+                discipline={discipline}
+                setContactTextSource={setContactTextSource}
+                setContact={setContact}
+              />
             )}
           </Col>
         </MainRow>

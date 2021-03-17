@@ -19,52 +19,45 @@ const Chaos = styled.button`
   z-index: 10;
 `;
 
-const PageWrapper = styled.div`
-  margin-bottom: 96px;
-  @media (max-width: 900px) {
-    margin-bottom: 0;
-  }
-`;
-
 const DefaultLayout = ({ children }) => {
-  const [chaos, setChaos] = useState(false);
-  const [counter, setCounter] = useState(1);
+  //   const [chaos, setChaos] = useState(false);
+  //   const [counter, setCounter] = useState(1);
 
-  let theStuff = null;
-  function getPlusOrMinus() {
-    return Math.round(Math.random()) * 2 - 1;
-  }
-  function getRandomDuration() {
-    return Math.random() * Math.random() * 100;
-  }
-  function getRandomXPosition() {
-    const X = getPlusOrMinus() * Math.round(-50 + Math.random() * 1500);
-    return X;
-  }
-  function getRandomYPosition() {
-    const Y = getPlusOrMinus() * Math.round(-500 + Math.random() * 1500);
-    return Y;
-  }
-  function getRandomRotate(max) {
-    const R = getPlusOrMinus() * Math.floor(Math.random() * Math.floor(max));
-    return R;
-  }
+  //   let theStuff = null;
+  //   function getPlusOrMinus() {
+  //     return Math.round(Math.random()) * 2 - 1;
+  //   }
+  //   function getRandomDuration() {
+  //     return Math.random() * Math.random() * 100;
+  //   }
+  //   function getRandomXPosition() {
+  //     const X = getPlusOrMinus() * Math.round(-50 + Math.random() * 1500);
+  //     return X;
+  //   }
+  //   function getRandomYPosition() {
+  //     const Y = getPlusOrMinus() * Math.round(-500 + Math.random() * 1500);
+  //     return Y;
+  //   }
+  //   function getRandomRotate(max) {
+  //     const R = getPlusOrMinus() * Math.floor(Math.random() * Math.floor(max));
+  //     return R;
+  //   }
 
-  function addStyles(item) {
-    item.style.transform =
-      "translate3d(" +
-      getRandomXPosition() +
-      "px" +
-      ", " +
-      getRandomYPosition() +
-      "px" +
-      ", 0)rotate(" +
-      getRandomRotate(720) +
-      "deg)";
-  }
-  function addTime(item, time) {
-    item.style.transitionDuration = time + "s";
-  }
+  //   function addStyles(item) {
+  //     item.style.transform =
+  //       "translate3d(" +
+  //       getRandomXPosition() +
+  //       "px" +
+  //       ", " +
+  //       getRandomYPosition() +
+  //       "px" +
+  //       ", 0)rotate(" +
+  //       getRandomRotate(720) +
+  //       "deg)";
+  //   }
+  //   function addTime(item, time) {
+  //     item.style.transitionDuration = time + "s";
+  //   }
 
   // useEffect(() => {
   //   if (chaos) {
@@ -176,7 +169,7 @@ const DefaultLayout = ({ children }) => {
     isTouchDevice();
   }, []);
   return (
-    <PageWrapper>
+    <>
       <Header />
       {/* <h1>{counter}</h1> */}
       {/* <Chaos
@@ -207,7 +200,7 @@ const DefaultLayout = ({ children }) => {
           }
         `}
       </style> */}
-    </PageWrapper>
+    </>
   );
 };
 

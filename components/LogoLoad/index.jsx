@@ -50,7 +50,7 @@ const popOff = keyframes`
 const FlexWrap = styled(FlexWrapper)`
   p {
     margin-bottom: 0;
-    font-size: 16px;
+    font-size: 48px;
     font-weight: 600;
     opacity: 0;
     &.right {
@@ -77,11 +77,12 @@ const FlexWrap = styled(FlexWrapper)`
     animation: ${loadIn};
     animation-delay: 0s;
     animation-fill-mode: forwards;
-
+    margin: 0px;
+    transform: scale(0.75);
     animation-timing-function: ease-in-out;
   }
   .tri {
-    margin-left: -0px;
+    margin-left: -12px;
     margin-right: 0px;
     margin-bottom: 5px;
     animation-delay: 0.5s;
@@ -110,7 +111,6 @@ const LoadWrap = styled.a`
   align-items: center;
   flex-direction: column;
   cursor: pointer;
-
   animation: ${popOff};
   animation-duration: 0.6s;
   animation-delay: 2.9s;

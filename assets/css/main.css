@@ -151,12 +151,12 @@ html {
   width: 100vw;
   overflow-x: hidden;
   max-width: 100%;
+  background-color: #fafeff;
 }
 * {
   box-sizing: border-box;
 }
 *:focus {
   outline: none;
-  box-shadow: white 0px 0px 0px 2px, #0800c9 0px 0px 0px 6px,
-    white 0px 0px 0px 8px;
+  box-shadow: #0ac959 0px 0px 0px 4px;
 }

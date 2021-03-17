@@ -7,7 +7,7 @@ import Link from "next/link";
 import FlexWrapper from "../FlexWrapper";
 
 const LogoText = styled.h3`
-  color: #0800c9;
+  color: ${(props) => (props.header ? "white" : "#0800C9")};
   font-size: 24px;
   line-height: 24px;
   margin-bottom: 0;
@@ -35,28 +35,29 @@ const FlexWrap = styled(FlexWrapper)`
 `;
 
 const LinkAnchor = styled.a`
-  background-color: white;
+  background-color: ${(props) => (props.header ? "transparent" : "white")};
   position: relative;
   z-index: 50;
-  padding: 12px 24px;
-  border-radius: 100px;
+  padding: 6px 12px;
   cursor: pointer;
 `;
 
-const Logo = () => {
+const Logo = ({ header }) => {
   return (
     <Link href="/">
-      <LinkAnchor>
+      <LinkAnchor header={header} tabIndex="0" role="button">
         <>
-          <LogoText className="c">TOM WISE</LogoText>
-          <FlexWrap align="center" childrenMarginRight="6.8px">
+          <LogoText header={header} className="c">
+            TOM WISE
+          </LogoText>
+          {/* <FlexWrap align="center" childrenMarginRight="6.8px">
             <p>{"<"}</p>
             <Dimond />
             <Triangle className="tri" />
             <Circle />
             <Square />
             <p>{"/>"}</p>
-          </FlexWrap>
+          </FlexWrap> */}
         </>
       </LinkAnchor>
     </Link>

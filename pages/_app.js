@@ -3,7 +3,6 @@ import "../assets/css/main.css";
 import "../assets/css/webfonts.css";
 import { BlobContextProvider } from "../components/Context/BlobContext";
 import Logo from "../components/LogoLoad";
-// import App from 'next/app'
 import Head from "next/head";
 
 function WiseyBoyApp({ Component, pageProps }) {
@@ -23,6 +22,7 @@ function WiseyBoyApp({ Component, pageProps }) {
       <Head>
         <title>Tom Wise Designs</title>
       </Head>
+
       {loading ? (
         <Logo />
       ) : (

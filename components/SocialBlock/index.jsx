@@ -13,7 +13,7 @@ const A = styled.a`
   display: ${(props) => (props.text ? "flex" : "unset")};
   align-items: ${(props) => (props.text ? "center" : "unset")};
   flex-direction: ${(props) => (props.text ? "column" : "unset")};
-
+  transform: scale(0.8);
   :hover {
     opacity: 0.6;
   }

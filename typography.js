@@ -6,7 +6,7 @@ const theme = {
   title: "Oak National Academy Teachers",
   baseFontSize: "12px",
   baseLineHeight: "12px",
-  headerFontFamily: ["Rigton-Medium", "sans-serif"],
+  headerFontFamily: ["Rigton-SemiBold", "sans-serif"],
   bodyFontFamily: ["Rigton-Medium", "sans-serif"],
   headerColor: "#0800C9",
   bodyColor: "#040234",
@@ -22,10 +22,10 @@ const theme = {
     "p, a, li, input, textarea": {
       fontSize: "20px",
       lineHeight: "30px",
-      fontWeight: "400",
     },
     p: {
       marginBottom: "12px",
+      fontFamily: "sf",
     },
     li: {
       marginBottom: "12px",
@@ -37,16 +37,14 @@ const theme = {
     "a:hover,a:active": {
       color: options.bodyColor,
     },
-    "h1,h2,h3,h4,h5,h6": {
-      fontWeight: 500,
-    },
+
     "h1, .h1": {
       fontSize: "24px",
       lineHeight: "36px",
     },
     h2: {
-      fontSize: "22px",
-      lineHeight: "30px",
+      fontSize: "30px",
+      lineHeight: "42px",
     },
     h3: {
       fontSize: "20px",

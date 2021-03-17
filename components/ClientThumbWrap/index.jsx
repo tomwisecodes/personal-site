@@ -7,11 +7,12 @@ const ClientThumb = styled.div`
   margin: 12px;
   position: relative;
   display: ${(props) => (props.display ? "block" : "none")};
-  border-radius: 8px;
+  border-radius: 0px;
   overflow: hidden;
   cursor: pointer;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+
   img {
     object-fit: cover;
     transition-duration: 0.3s;
@@ -25,7 +26,7 @@ const ClientThumb = styled.div`
     padding-bottom: 100%;
     width: 100%;
     background-color: ${(props) => (props.clientHover ? "#040234" : "#f8f8f8")};
-    border-radius: 8px;
+    border-radius: 0px;
     .clientContent {
       position: absolute;
       top: 0;
@@ -38,9 +39,29 @@ const ClientThumb = styled.div`
       color: white;
       padding: 24px;
       text-align: center;
+      flex-direction: column;
       p {
         color: white;
         margin-bottom: 0;
+        display: ${(props) => (props.clientHover ? "block" : "none")};
+        &.agency {
+          font-size: 16px;
+          line-height: 20px;
+        }
+        &.title {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  :focus {
+    img {
+      display: none !important;
+    }
+    .clientInner {
+      background-color: #040234;
+      p {
+        display: block;
       }
     }
   }
@@ -48,6 +69,11 @@ const ClientThumb = styled.div`
 
 const ClientThumbWrap = ({ setViewer, client, blur, discipline }) => {
   const [clientHover, setClientHover] = useState(false);
+  function handleKeyDown(e, client) {
+    if (e.key === "Enter") {
+      setViewer(client);
+    }
+  }
   return (
     <ClientThumb
       className="hover"
@@ -63,6 +89,9 @@ const ClientThumbWrap = ({ setViewer, client, blur, discipline }) => {
       onMouseEnter={() => setClientHover(true)}
       onMouseLeave={() => setClientHover(false)}
       clientHover={clientHover}
+      tabIndex="0"
+      role="button"
+      onKeyDown={(e) => handleKeyDown(e, client)}
     >
       <div className="clientInner">
         {!clientHover && (
@@ -73,7 +102,12 @@ const ClientThumbWrap = ({ setViewer, client, blur, discipline }) => {
           />
         )}
         <div className="clientContent">
-          {clientHover && <p> {client.clientName} </p>}
+          <>
+            <p className="title">
+              {client.project ? client.project : client.clientName}{" "}
+            </p>
+            <p className="agency">{client.project && client.clientName}</p>
+          </>
         </div>
       </div>
     </ClientThumb>

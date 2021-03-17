@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Col, Row } from "../../components/Grid";
 import Container from "../../components/Container";
 import DefaultLayout from "../../Layouts/DefaultLayout";
@@ -6,10 +7,19 @@ import Image from "next/image";
 import FlexWrapper from "../../components/FlexWrapper";
 import { ArrowLeft, ArrowDown } from "react-ikonate";
 import PageTitle from "../../components/PageTitle";
+import Button from "../../components/Button";
+import ButtonLink from "../../components/Button/ButtonLink";
+import { BlobContext } from "../../components/Context/BlobContext";
+import BtnWrap from "../../components/BtnWrap";
+
 const BioWrap = styled(Container)``;
 
 const SpaceBetween = styled(Row)`
   justify-content: space-between;
+  h2 {
+    font-size: 30px;
+    line-height: 48px;
+  }
 `;
 
 const ImgWrap = styled.div`
@@ -19,6 +29,8 @@ const ImgWrap = styled.div`
 `;
 
 const BioPage = () => {
+  const { setContact, setContactTextSource } = useContext(BlobContext);
+
   return (
     <>
       <DefaultLayout>
@@ -28,7 +40,7 @@ const BioPage = () => {
           <Row style={{ marginTop: `72px`, marginBottom: `72px` }}>
             <Col width={[1]}>
               <FlexWrapper
-                justify="flex-start"
+                justify="center"
                 childrenMarginRight="24px"
                 align="center"
               >
@@ -42,7 +54,7 @@ const BioPage = () => {
 
                 <ArrowLeft
                   style={{
-                    marginLeft: `24px`,
+                    marginLeft: `0px`,
                     marginRight: `6px`,
                     width: `24px`,
                     height: `24px`,
@@ -56,7 +68,7 @@ const BioPage = () => {
             <Col width={[1, 1, 5 / 12]}>
               <h2>Inside my work:</h2>
               <p>
-                <b>I design and I code:</b>
+                <b>I design, I code.</b>
                 <br /> I am a product designer and developer with plentiful
                 experience in UX, UI, Branding and Front End Development. I like
                 to work in roles that allow me to jump between design, research
@@ -78,18 +90,20 @@ const BioPage = () => {
                 lab leading there UX/UI department. I have headed up digital
                 design at a ed-tech startup, a corn company, contracted at many
                 many agencies, still run my own design studio (putty.studio).
-                And before that I was a full time DJ and mechanical engineer
-                :laugh:.
+                And before that I was a full time DJ and mechanical engineer.
               </p>
+              <BtnWrap>
+                <ButtonLink href="/work">My work</ButtonLink>
+              </BtnWrap>
             </Col>
             <Col width={[1, 1, 5 / 12]}>
               <h2>Outside my work:</h2>
               <p>
                 I was born and raised in Brighton before moving to Manchester,
                 and most recently Dulwich in South East London. I'm a passionate
-                (non-professional) athlete with a passion for running, cycling
-                and climbing and am impartial to a cheeky game of football, fail
-                on a skateboard or open water swim.
+                amatuer athlete with a special love for running, cycling and
+                climbing and am impartial to a cheeky skateboard, game of footy
+                or open water swim.
               </p>
               <p>
                 When i'm not working hard or trying to get injured I wind down
@@ -97,9 +111,17 @@ const BioPage = () => {
                 anyone to listen to me talk about niche music I love.
               </p>
               <p>
-                If you fancy joining me for a run, or my crochet circle, click
-                here.{" "}
+                Let me know if you fancy joining me for a run, or my crochet
+                circle.
               </p>
+              <BtnWrap
+                onClick={() => {
+                  setContact(true);
+                  setContactTextSource("social");
+                }}
+              >
+                <Button>Join me</Button>
+              </BtnWrap>
             </Col>
           </SpaceBetween>
         </BioWrap>
