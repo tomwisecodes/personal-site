@@ -65,7 +65,7 @@ const BioPage = () => {
             </Col>
           </Row>
           <SpaceBetween>
-            <Col width={[1, 1, 5 / 12]}>
+            <Col width={[1, 1, 5 / 12]} mb="72px">
               <h2>Inside my work:</h2>
               <p>
                 <b>I design, I code.</b>
@@ -108,7 +108,7 @@ const BioPage = () => {
               <p>
                 When i'm not working hard or trying to get injured I wind down
                 with personal illustration projects, crochet and trying to get
-                anyone to listen to me talk about niche music I love.
+                anyone to discuss why Brighton & Hove Albion keep losing.
               </p>
               <p>
                 Let me know if you fancy joining me for a run, or my crochet

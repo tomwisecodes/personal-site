@@ -48,6 +48,9 @@ const Socials = styled.div`
   a {
     margin-bottom: -6px;
   }
+  @media (max-width: 550px) {
+    display: none;
+  }
 `;
 
 const MobileMenuToggle = styled.button`
@@ -124,12 +127,8 @@ const Header = () => {
         <>
           <HeaderWrapper>
             <Logo />
-            <MobileMenuToggle onClick={() => setToggleMenu((i) => !i)}>
-              {toggleMenu ? "Close" : "Menu"}
-            </MobileMenuToggle>
           </HeaderWrapper>
           <FixHeaderHeight />
-          <MobileMenu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
         </>
       )}
     </>

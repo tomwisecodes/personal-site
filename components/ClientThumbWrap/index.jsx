@@ -12,7 +12,9 @@ const ClientThumb = styled.div`
   cursor: pointer;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
-
+  @media (max-width: 550px) {
+    width: calc(50% - 24px);
+  }
   img {
     object-fit: cover;
     transition-duration: 0.3s;

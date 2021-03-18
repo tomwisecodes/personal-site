@@ -30,7 +30,7 @@ const TechPage = () => {
   return (
     <DefaultLayout>
       <Container>
-        <PageTitle title="tech stack" />
+        <PageTitle title="skills" />
         <SpaceBetween style={{ marginTop: `72px` }}>
           <Col width={[1, 1, 5 / 12]}>
             <h2>Code</h2>

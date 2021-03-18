@@ -111,6 +111,18 @@ const MobileMenu = ({ toggleMenu, setToggleMenu }) => {
             Work
           </a>
         </Link>
+        <Link href="/skills" className="c">
+          <a
+            className="c"
+            style={
+              router.pathname.includes("skills")
+                ? { color: `#CC4537`, textDecoration: `underline` }
+                : null
+            }
+          >
+            Skills
+          </a>
+        </Link>
         <ContactButton
           onClick={() => {
             setContact(true);

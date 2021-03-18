@@ -14,6 +14,9 @@ const ImgWrapper = styled.div`
   width: 100%;
   height: 400px;
   cursor: pointer;
+  @media (max-width: 550px) {
+    height: 280px;
+  }
   img {
     object-fit: cover;
   }
@@ -65,7 +68,6 @@ const WorkDisplayer = ({
               </h3>
             )}
           </FlexWrapper>
-
           <Close
             className="hover"
             style={{ width: `36px`, height: `36px`, cursor: `pointer` }}

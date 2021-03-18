@@ -17,12 +17,20 @@ const HomeWrap = styled(Container)`
     font-size: 48px;
     color: #080559;
     font-family: Rigton-Medium, sans-serif;
+    @media (max-width: 550px) {
+      font-size: 36px;
+      margin-top: 72px;
+    }
   }
   h1 {
     font-size: 72px;
     line-height: 84px;
     color: #080559;
     font-family: Rigton-Medium, sans-serif;
+    @media (max-width: 550px) {
+      font-size: 48px;
+      line-height: 60px;
+    }
   }
 `;
 
@@ -33,6 +41,7 @@ const RedSpan = styled.span`
 const LinksWrapper = styled.div`
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   .green {
     background-color: #0ac959;
     color: #080559;
@@ -60,6 +69,9 @@ const LinksWrapper = styled.div`
     transition-duration: 0.4s;
     transition-timing-function: ease-in-out;
     cursor: pointer;
+    @media (max-width: 550px) {
+      width: 50%;
+    }
     :hover {
       background-color: #0800c9;
       color: #f8f8f8;

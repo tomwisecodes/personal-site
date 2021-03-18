@@ -98,11 +98,11 @@ const HeaderMenu = () => {
           Work
         </a>
       </Link>
-      <Link href="/tech">
+      <Link href="/skills">
         <a
           className="c red"
           style={
-            router.pathname.includes("tech")
+            router.pathname.includes("skills")
               ? {
                   backgroundColor: `#f8f8f8`,
                   color: `#0800c9`,

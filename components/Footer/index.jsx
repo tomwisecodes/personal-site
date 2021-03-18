@@ -141,44 +141,46 @@ const Footer = () => {
   const [footerHover, setFooterHover] = useState(false);
 
   return router.pathname === "/" ? (
-    <FooterWrapper>
-      <FooterInner
-        footerHover={footerHover}
-        onMouseEnter={() => setFooterHover(true)}
-        onMouseLeave={() => setFooterHover(false)}
-      >
-        <a href="mailto:hello@tomwise.me" target="_blank">
-          <Emoji
-            name="man-technologist"
-            width={36}
-            style={{ marginBottom: `-4px` }}
-          />
-          hello@tomwise.me
-        </a>
-        <a href="mailto:hello@tomwise.me" target="_blank">
-          <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
-          +(44) 79176 21285
-        </a>
-      </FooterInner>
-      <FooterInnerTwo
-        footerHover={footerHover}
-        onMouseEnter={() => setFooterHover(true)}
-        onMouseLeave={() => setFooterHover(false)}
-      >
-        <a href="mailto:hello@tomwise.me" target="_blank">
-          <Emoji
-            name="man-technologist"
-            width={36}
-            style={{ marginBottom: `-4px` }}
-          />
-          hello@tomwise.me
-        </a>
-        <a href="mailto:hello@tomwise.me" target="_blank">
-          <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
-          +(44) 79176 21285
-        </a>
-      </FooterInnerTwo>
-      <MobileFooterContent>
+    <>
+      <FooterWrapper>
+        <FooterInner
+          footerHover={footerHover}
+          onMouseEnter={() => setFooterHover(true)}
+          onMouseLeave={() => setFooterHover(false)}
+        >
+          <a href="mailto:hello@tomwise.me" target="_blank">
+            <Emoji
+              name="man-technologist"
+              width={36}
+              style={{ marginBottom: `-4px` }}
+            />
+            hello@tomwise.me
+          </a>
+          <a href="mailto:hello@tomwise.me" target="_blank">
+            <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
+            +(44) 79176 21285
+          </a>
+        </FooterInner>
+        <FooterInnerTwo
+          footerHover={footerHover}
+          onMouseEnter={() => setFooterHover(true)}
+          onMouseLeave={() => setFooterHover(false)}
+        >
+          <a href="mailto:hello@tomwise.me" target="_blank">
+            <Emoji
+              name="man-technologist"
+              width={36}
+              style={{ marginBottom: `-4px` }}
+            />
+            hello@tomwise.me
+          </a>
+          <a href="mailto:hello@tomwise.me" target="_blank">
+            <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
+            +(44) 79176 21285
+          </a>
+        </FooterInnerTwo>
+      </FooterWrapper>
+      <StaticFooter>
         <a href="mailto:hello@tomwise.me" target="_blank">
           <Emoji
             name="man-technologist"
@@ -191,8 +193,10 @@ const Footer = () => {
           <Emoji name="selfie" width={36} style={{ marginBottom: `-4px` }} />
           +(44) 79176 21285
         </a>
-      </MobileFooterContent>
-    </FooterWrapper>
+
+        <p>© Tom Wise 2021</p>
+      </StaticFooter>
+    </>
   ) : (
     <StaticFooter>
       <a href="mailto:hello@tomwise.me" target="_blank">

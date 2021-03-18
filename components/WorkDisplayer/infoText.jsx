@@ -4,7 +4,7 @@ const InfoText = ({ client }) => {
       return (
         <>
           From conception, I was responsible for the UX design, UI design &
-          Frond End development of the education platform Oak which grew to
+          Front End development of the education platform Oak which grew to
           millions of daily users during the last year of COVID-19.
           <br />
           <br />
