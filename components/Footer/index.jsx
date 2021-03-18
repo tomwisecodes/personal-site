@@ -42,12 +42,12 @@ const FooterInner = styled.div`
   width: 100%;
   animation: ${footerMoving};
   animation-duration: 30s;
-  animation-iteration-count: ${(props) =>
-    props.pauseAnimation ? "0s" : "infinite"};
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
   background-color: transparent;
   transition-duration: 0.3s;
-  margin-top: ${(props) => (props.pauseAnimation ? "100px" : "0")};
+  animation-play-state: ${(props) =>
+    props.footerHover ? "paused" : "running"};
   a {
     font-size: 36px;
     text-decoration: none;
@@ -75,12 +75,12 @@ const FooterInnerTwo = styled.div`
   animation: ${footerMoving};
   animation-duration: 30s;
   animation-delay: 6s;
-  animation-iteration-count: ${(props) =>
-    props.pauseAnimation ? "0s" : "infinite"};
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
   background-color: transparent;
   transition-duration: 0.3s;
-  margin-top: ${(props) => (props.pauseAnimation ? "100px" : "0")};
+  animation-play-state: ${(props) =>
+    props.footerHover ? "paused" : "running"};
   a {
     font-size: 36px;
     text-decoration: none;
@@ -138,9 +138,15 @@ const StaticFooter = styled.footer`
 
 const Footer = () => {
   const router = useRouter();
+  const [footerHover, setFooterHover] = useState(false);
+
   return router.pathname === "/" ? (
     <FooterWrapper>
-      <FooterInner>
+      <FooterInner
+        footerHover={footerHover}
+        onMouseEnter={() => setFooterHover(true)}
+        onMouseLeave={() => setFooterHover(false)}
+      >
         <a href="mailto:hello@tomwise.me" target="_blank">
           <Emoji
             name="man-technologist"
@@ -154,7 +160,11 @@ const Footer = () => {
           +(44) 79176 21285
         </a>
       </FooterInner>
-      <FooterInnerTwo>
+      <FooterInnerTwo
+        footerHover={footerHover}
+        onMouseEnter={() => setFooterHover(true)}
+        onMouseLeave={() => setFooterHover(false)}
+      >
         <a href="mailto:hello@tomwise.me" target="_blank">
           <Emoji
             name="man-technologist"
