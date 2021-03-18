@@ -72,8 +72,8 @@ const MouseCircle = () => {
     handleLinkHoverEvents();
 
     window.addEventListener("mousemove", setFromEvent);
-    window.addEventListener("mousemove", mouseMoving);
-    window.addEventListener("mousemove", mouseTrail);
+    // window.addEventListener("mousemove", mouseMoving);
+    // window.addEventListener("mousemove", mouseTrail);
 
     return () => {
       window.removeEventListener("mousemove", setFromEvent);
@@ -84,47 +84,47 @@ const MouseCircle = () => {
     cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
   }, [mouseX, mouseY]);
 
-  const dots = [];
-  const classNames = ["square", "circle", "triangle", "dimaond", "square"];
-  const colours = ["#0800C9", "#5859cc", "#0ac959", "#c92014", "#c9ab14"];
-  for (let i = 0; i < 8; i++) {
-    const node = document.createElement("div");
-    const theClass = classNames[Math.floor(Math.random() * classNames.length)];
-    node.className = theClass;
-    document.body.appendChild(node);
-    dots.push(node);
-  }
-  let currentDot = 0;
+  // const dots = [];
+  // const classNames = ["square", "circle", "triangle", "dimaond", "square"];
+  // const colours = ["#0800C9", "#5859cc", "#0ac959", "#c92014", "#c9ab14"];
+  // for (let i = 0; i < 8; i++) {
+  //   const node = document.createElement("div");
+  //   const theClass = classNames[Math.floor(Math.random() * classNames.length)];
+  //   node.className = theClass;
+  //   document.body.appendChild(node);
+  //   dots.push(node);
+  // }
+  // let currentDot = 0;
 
-  function mouseTrail(event) {
-    const dot = dots[currentDot];
-    const theColour = colours[Math.floor(Math.random() * colours.length)];
-    const min = -5;
-    const max = 5;
-    const minHue = -30;
-    const maxHue = 30;
-    const random = Math.floor(Math.random() * (+max - +min)) + +min;
-    const randomHue = Math.floor(Math.random() * (+maxHue - +minHue)) + +minHue;
-    if (dot.classList.value !== "triangle") {
-      dot.style.backgroundColor = theColour;
-    } else {
-      dot.style.borderTopColor = theColour;
-      dot.style.transform = "rotate(" + Math.random() * 360 + "deg)";
-    }
-    dot.style.filter = "hue-rotate(" + randomHue + "deg)";
-    dot.style.display = "block";
-    dot.style.left = event.pageX + random + "px";
-    dot.style.top = event.pageY + random + "px";
-    dot.style.opacity = "0";
-    dot.style.animationName = "fader";
-    dot.style.animationDuration = "2000ms";
-    dot.style.animationFillMode = "forwards";
-    setTimeout(function () {
-      dot.style.animationName = "unset";
-    }, 800);
+  // function mouseTrail(event) {
+  //   const dot = dots[currentDot];
+  //   const theColour = colours[Math.floor(Math.random() * colours.length)];
+  //   const min = -5;
+  //   const max = 5;
+  //   const minHue = -30;
+  //   const maxHue = 30;
+  //   const random = Math.floor(Math.random() * (+max - +min)) + +min;
+  //   const randomHue = Math.floor(Math.random() * (+maxHue - +minHue)) + +minHue;
+  //   if (dot.classList.value !== "triangle") {
+  //     dot.style.backgroundColor = theColour;
+  //   } else {
+  //     dot.style.borderTopColor = theColour;
+  //     dot.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+  //   }
+  //   dot.style.filter = "hue-rotate(" + randomHue + "deg)";
+  //   dot.style.display = "block";
+  //   dot.style.left = event.pageX + random + "px";
+  //   dot.style.top = event.pageY + random + "px";
+  //   dot.style.opacity = "0";
+  //   dot.style.animationName = "fader";
+  //   dot.style.animationDuration = "2000ms";
+  //   dot.style.animationFillMode = "forwards";
+  //   setTimeout(function () {
+  //     dot.style.animationName = "unset";
+  //   }, 800);
 
-    currentDot = (currentDot + 1) % dots.length;
-  }
+  //   currentDot = (currentDot + 1) % dots.length;
+  // }
 
   return (
     <>
