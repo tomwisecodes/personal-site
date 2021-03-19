@@ -64,6 +64,7 @@ const MobileMenuToggle = styled.button`
     border-radius: 100px;
     color: white;
     cursor: pointer;
+    height: 100%;
   }
 `;
 
@@ -76,6 +77,10 @@ const Mobile = styled.div`
   display: none;
   @media (max-width: 769px) {
     display: block;
+    height: 100%;
+    > div {
+      height: 100%;
+    }
   }
 `;
 
@@ -115,7 +120,7 @@ const Header = () => {
                   <HeaderMenu />
                 </MenuItems>
                 <MobileMenuToggle onClick={() => setToggleMenu((i) => !i)}>
-                  {toggleMenu ? "Close" : "Menu"}
+                  {toggleMenu ? "" : "Menu"}
                 </MobileMenuToggle>
               </FlexWrapper>
             </Mobile>

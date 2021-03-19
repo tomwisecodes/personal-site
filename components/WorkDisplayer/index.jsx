@@ -25,6 +25,10 @@ const ImgWrapper = styled.div`
 const GridWrap = styled(FlexWrapper)`
   margin-left: -12px;
   margin-right: -12px;
+  @media (max-width: 550px) {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
 `;
 
 const Button = styled.button`

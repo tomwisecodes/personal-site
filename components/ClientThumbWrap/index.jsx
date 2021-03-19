@@ -13,13 +13,17 @@ const ClientThumb = styled.div`
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   @media (max-width: 550px) {
-    width: calc(50% - 24px);
+    width: calc(50% - 12px);
+    margin: 6px;
   }
   img {
     object-fit: cover;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     filter: ${(props) => (props.blur ? "blur(4px)" : "unset")};
+    @media (max-width: 550px) {
+      filter: unset !important;
+    }
     opacity: ${(props) => (props.blur ? 0.8 : 1)};
   }
   .clientInner {

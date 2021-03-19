@@ -62,8 +62,9 @@ const CloseMenuArea = styled.div`
   display: ${(props) => (props.toggleMenu ? "flex" : "none")};
   align-items: center;
   justify-content: center;
-  font-size: 72px;
+  font-size: 48px;
   color: #0800c9;
+  padding-bottom: 72px;
 `;
 
 <ContactButton
