@@ -99,7 +99,7 @@ const ClientThumbWrap = ({ setViewer, client, blur, discipline }) => {
         {!clientHover && (
           <Image
             src={client.imageThumb}
-            alt="Picture of the author"
+            alt={client.clientName + `logo`}
             layout="fill"
           />
         )}
