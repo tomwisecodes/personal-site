@@ -96,6 +96,9 @@ const FlexWrap = styled(FlexWrapper)`
   svg {
     transform: scale(1.05);
   }
+  @media (max-width: 550px) {
+    transform: scale(0.7);
+  }
 `;
 
 const LoadWrap = styled.a`

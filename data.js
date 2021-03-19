@@ -18,14 +18,14 @@ const clients = [
     dev: true,
   },
   {
-    id: "4",
+    id: "3",
     clientName: "Pentland Disruption Lab",
     project: "Berghaus",
     imageThumb: "/images/logos/berghaus-logo.png",
     displayImage: "",
     ux: true,
-    graphic: false,
-    dev: true,
+    graphic: true,
+    dev: false,
   },
   {
     id: "4",

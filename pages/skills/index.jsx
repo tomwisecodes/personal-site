@@ -32,22 +32,21 @@ const TechPage = () => {
       <Container>
         <PageTitle title="skills" />
         <SpaceBetween style={{ marginTop: `72px` }}>
-          <Col width={[1, 1, 5 / 12]}>
+          <Col width={[1, 1, 5 / 12]} mb="72px">
             <h2>Code</h2>
             <p>
-              I have produced and worked on production sites using with php and
-              JS frame works. At the moment I favour working with Next.JS.
-              <br />
-              This is a Next app.
+              I have produced and worked on production sites using with
+              WordPress and JS frame works. I'm most comfy sitting on the front
+              end making things pixel perfect. At the moment I favour working
+              with Next.JS.
             </p>
-            <h3>Experienced Working with:</h3>
+            <h3>Experience with:</h3>
             <SkillsWrap>
               <Skill>Next.js</Skill>
               <Skill>Gatsby</Skill>
               <Skill>React.js</Skill>
               <Skill>Vercel</Skill>
               <Skill>GraphQL</Skill>
-              <Skill>Reddis</Skill>
               <Skill>StoryBook</Skill>
               <Skill>Github</Skill>
               <Skill>WordPress</Skill>

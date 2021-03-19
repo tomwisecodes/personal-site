@@ -22,7 +22,7 @@ const InfoText = ({ client }) => {
           <br />
           <br />
           The classroom was the student-facing side of this, designed to be more
-          user friendly to students and to keep them focused on their learning!
+          user friendly and accessible as possible.
         </>
       );
       break;
@@ -31,17 +31,28 @@ const InfoText = ({ client }) => {
         return (
           <>
             Whilst at Pentland I was helping design a digital platform &
-            eCommerce store for a wheelchair sports specialist clothing brand.
-            The platform was designed to be able to get feedback from the users
-            online about the products/brand/user experience.
+            eCommerce store for a wheelchair a new sports specialist clothing
+            brand, Hayst. The platform was designed to be able to get feedback
+            from the users online about the products/brand/user experience in
+            phases before launch.
           </>
         );
       }
+      if (client.project === "Berghaus") {
+        return (
+          <>
+            Designed an e-commerce experience to add-on to the current Berghaus
+            site to accompany a new bag designed and built entirely from
+            offcuts.
+          </>
+        );
+      }
+
       return (
         <>
           I worked on Toddl during my time at Pentland, designing an experience
-          that would allow parents to accurately measure there children's feet
-          with their phone.
+          that would allow parents to accurately measure, and buy shoes for,
+          there children's feet with an app on their phone.
         </>
       );
       break;
@@ -97,6 +108,88 @@ const InfoText = ({ client }) => {
         <>
           Worked producing a new marketing site and CO2 calculator with gone
           west.
+        </>
+      );
+      break;
+    case "Settio":
+      return (
+        <>
+          Designed a series of collateral and brochures for Manchester-based
+          estate agent Settio.
+        </>
+      );
+      break;
+    case "Push Doctor":
+      return (
+        <>
+          Designed a series of icons and marketing material for on phone medical
+          service, push doctor.
+        </>
+      );
+      break;
+    case "Marks & Spencers":
+      return (
+        <>
+          Worked with VYPR, to produce possible packaging options for M&S to be
+          tested ahead of new lines being released.
+        </>
+      );
+      break;
+    case "Startist":
+      return (
+        <>Branding, Design & Development for art supply start-up, Startist.</>
+      );
+      break;
+    case "Love Corn":
+      return (
+        <>
+          Worked with Love Corn to produce all marketing collateral and
+          assisting in designing the packaging for a new flavour release.
+        </>
+      );
+      break;
+    case "We Work":
+      return (
+        <>
+          Produced a line of illustrations for WeWork representing their six
+          core values as dogs.
+        </>
+      );
+      break;
+    case "Dough":
+      return (
+        <>
+          Developed site for the renowned pizza restaurant in Manchester, Dough.
+        </>
+      );
+      break;
+    case "Teacher Tapp":
+      return (
+        <>
+          Consulted with Teacher Tapp to improve their site design and clean up
+          the code in the background.
+        </>
+      );
+      break;
+    case "APX":
+      return (
+        <>
+          Developed APX's new site working with Battalion. This site included a
+          proposition app for people to pitch their business for investment and
+          a jobs board.
+        </>
+      );
+      break;
+    case "Coherent Labs":
+      return (
+        <>Developed a new site for Coherent Labs working with Battalion.</>
+      );
+      break;
+    case "Flipbook":
+      return (
+        <>
+          Worked with Matt Bay to develop an agency site to display Flipbook
+          studios work.
         </>
       );
       break;
