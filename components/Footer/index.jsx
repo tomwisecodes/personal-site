@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import Link from "next/link";
 import Emoji from "react-apple-emojis";
 import { useRouter } from "next/router";
 
