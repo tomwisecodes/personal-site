@@ -148,7 +148,7 @@ const InfoText = ({ client }) => {
         </>
       );
       break;
-    case "We Work":
+    case "WeWork":
       return (
         <>
           Produced a line of illustrations for WeWork representing their six
