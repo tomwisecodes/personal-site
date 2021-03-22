@@ -8,15 +8,26 @@ import Head from "next/head";
 function WiseyBoyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    let timer = null;
-    if (loading) {
-      timer = setTimeout(function () {
-        setLoading(false);
-      }, 3300);
+  // useEffect(() => {
+  //   let timer = null;
+  //   if (loading) {
+  //     timer = setTimeout(function () {
+  //       setLoading(false);
+  //     }, 3300);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [loading, setLoading]);
+
+  function google() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
     }
-    return () => clearTimeout(timer);
-  }, [loading, setLoading]);
+    gtag("js", new Date());
+
+    gtag("config", "G-VQS4WRDWQT");
+  }
+
   return (
     <>
       <Head>
@@ -39,24 +50,16 @@ function WiseyBoyApp({ Component, pageProps }) {
           href="/images/favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/images/favicon/site.webmanifest" />
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VQS4WRDWQT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-VQS4WRDWQT');
-</script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VQS4WRDWQT"
+        />
+        {() => google()}
       </Head>
-
-      {loading ? (
-        <Logo />
-      ) : (
-        <BlobContextProvider>
-          <Component {...pageProps} />
-        </BlobContextProvider>
-      )}
+      <BlobContextProvider>
+        <Component {...pageProps} />
+      </BlobContextProvider>
     </>
   );
 }
