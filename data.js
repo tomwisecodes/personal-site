@@ -2,7 +2,7 @@ const clients = [
   {
     id: "1",
     clientName: "Oak",
-    imageThumb: "/images/logos/oak-logo.png",
+    imageThumb: "/images/logos/oak-logo-main.png",
     displayImage: "",
     ux: true,
     graphic: true,
