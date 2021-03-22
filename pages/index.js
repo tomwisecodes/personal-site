@@ -123,7 +123,7 @@ const HomePage = () => {
                 <Link href="/work" className="c">
                   <a className="c green">Work</a>
                 </Link>
-                <Link href="/work" className="c">
+                <Link href="/skills" className="c">
                   <a className="c red">Skills</a>
                 </Link>
                 <ContactButton

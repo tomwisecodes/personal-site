@@ -226,10 +226,7 @@ const ContactBlob = () => {
             <br />
             Tom Wise Hotline
           </h2>
-          <p>
-            You can get in touch with me via any of the channels below.
-            <br /> I physically cant wait to hear from you.
-          </p>
+          <p>You can get in touch with me via any of the channels below.</p>
         </>
       );
     }
