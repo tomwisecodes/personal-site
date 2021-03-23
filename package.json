@@ -19,6 +19,7 @@
     "react": "16.13.1",
     "react-apple-emojis": "^1.1.1",
     "react-dom": "16.13.1",
+    "react-ga": "^3.3.0",
     "react-ikonate": "^2.0.1",
     "react-typography": "^0.16.19",
     "reflexbox": "^4.0.6",

@@ -4,9 +4,10 @@ import "../assets/css/webfonts.css";
 import { BlobContextProvider } from "../components/Context/BlobContext";
 import Logo from "../components/LogoLoad";
 import Head from "next/head";
+import ReactGA from "react-ga";
 
 function WiseyBoyApp({ Component, pageProps }) {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   let timer = null;
@@ -18,16 +19,10 @@ function WiseyBoyApp({ Component, pageProps }) {
   //   return () => clearTimeout(timer);
   // }, [loading, setLoading]);
 
-  function google() {
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-VQS4WRDWQT");
-  }
-
+  useEffect(() => {
+    ReactGA.initialize("G-VQS4WRDWQT");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <>
       <Head>
@@ -55,7 +50,22 @@ function WiseyBoyApp({ Component, pageProps }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-VQS4WRDWQT"
         />
-        {() => google()}
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VQS4WRDWQT"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VQS4WRDWQT');
+  `,
+          }}
+        />
       </Head>
       <BlobContextProvider>
         <Component {...pageProps} />
