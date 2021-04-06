@@ -9,7 +9,7 @@ const TitleLink = styled.button`
   padding: 0;
   font-style: italic;
   position: relative;
-  cursor: pointer;
+  // cursor: pointer;
   span {
     ::before {
       display: none;
@@ -85,16 +85,16 @@ const TitleLinkWrap = ({ children, theRef }) => {
   const [seeMore, setSeeMore] = useState(false);
   return (
     <TitleLink
-      seeMore={seeMore}
-      onClick={() =>
-        theRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        })
-      }
-      onMouseEnter={() => setSeeMore(true)}
-      onMouseLeave={() => setSeeMore(false)}
+    // seeMore={seeMore}
+    // onClick={() =>
+    //   theRef.current.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //     inline: "nearest",
+    //   })
+    // }
+    // onMouseEnter={() => setSeeMore(true)}
+    // onMouseLeave={() => setSeeMore(false)}
     >
       {children}
     </TitleLink>
