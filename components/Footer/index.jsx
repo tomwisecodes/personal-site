@@ -11,9 +11,13 @@ const FooterWrap = styled.footer`
   flex-direction: column;
   align-items: center;
   p {
-    font-family: rigton;
+    font-family: Rigton-Medium, sans-serif;
     margin-top: 24px;
     font-size: 16px;
+  }
+  img {
+    dislay: block;
+    margin-top: 36px;
   }
 `;
 

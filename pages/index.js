@@ -21,6 +21,7 @@ const HomeWrap = styled(Container)`
     line-height: 84px;
     margin-bottom: 36px;
     margin-top: 240px;
+
     cursor: none !important;
   }
   h2 {
@@ -28,6 +29,20 @@ const HomeWrap = styled(Container)`
     line-height: 42px;
     .color {
       color: #0ac959;
+    }
+  }
+  @media (max-width: 769px) {
+    h1 {
+      font-size: 60px;
+      line-height: 60px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    img {
+      max-width: 60px;
     }
   }
   > div {
@@ -163,7 +178,6 @@ const HomePage = () => {
   useEffect(() => {
     isTouchDevice();
   }, []);
-
   return (
     <>
       <DefaultLayout>

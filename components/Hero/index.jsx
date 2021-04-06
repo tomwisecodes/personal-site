@@ -12,6 +12,7 @@ const TitleLink = styled.button`
   cursor: pointer;
   span {
     ::before {
+      display: none;
       content: "";
       position: absolute;
       left: 0;
@@ -84,16 +85,16 @@ const TitleLinkWrap = ({ children, theRef }) => {
   const [seeMore, setSeeMore] = useState(false);
   return (
     <TitleLink
-    // seeMore={seeMore}
-    // onClick={() =>
-    //   theRef.current.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "start",
-    //     inline: "nearest",
-    //   })
-    // }
-    // onMouseEnter={() => setSeeMore(true)}
-    // onMouseLeave={() => setSeeMore(false)}
+      seeMore={seeMore}
+      onClick={() =>
+        theRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        })
+      }
+      onMouseEnter={() => setSeeMore(true)}
+      onMouseLeave={() => setSeeMore(false)}
     >
       {children}
     </TitleLink>
@@ -109,7 +110,9 @@ const Hero = ({ showdef, setShowDef, devRef, desRef }) => {
             onMouseEnter={() => setShowDef(true)}
             onMouseLeave={() => setShowDef(false)}
           >
-            Unicorns are real{" "}
+            Unicorns
+            <br />
+            are real{" "}
             <Emoji
               name="unicorn"
               width={72}

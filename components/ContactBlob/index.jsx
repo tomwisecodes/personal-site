@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled, { keyframes } from "styled-components";
-import Blob from "../../assets/svg/shapes/blob.svg";
+
 import { BlobContext } from "../Context/BlobContext";
 import { Close } from "react-ikonate";
 import SocialBlock from "../SocialBlock";
@@ -29,6 +29,9 @@ const BlobWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) => (props.contact ? "#252529" : "transparent")};
+  opacity: ${(props) => (props.contact ? "1" : "0")};
+  color: #fafaed;
   img,
   a > svg {
     animation-delay: 0s;
@@ -60,7 +63,7 @@ const ContactDeets = styled.div`
   left: calc(50% - 300px);
   max-width: 600px;
   transition-duration: 0.2s;
-  transition-delay: ${(props) => (props.contact ? "1.6s" : "0s")};
+
   transition-timing-function: ease-in-out;
   visibility: hidden;
   visibility: ${(props) => props.contact && "visible"};
@@ -134,6 +137,7 @@ const Ball = styled.div`
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.27, 1.16, 0.71, 0.87);
 `;
+
 const CloseWrapper = styled.div`
   position: fixed;
   top: 6px;
@@ -141,7 +145,7 @@ const CloseWrapper = styled.div`
   width: 72px;
   height: 72px;
   z-index: 700;
-  background-color: #c22424;
+  background-color: #fafaed;
   border-radius: 200px;
   cursor: pointer;
   display: ${(props) => (props.contact ? "flex" : "none")};
@@ -151,7 +155,7 @@ const CloseWrapper = styled.div`
     width: 80%;
     height: 80%;
     path {
-      color: white;
+      color: #252529;
     }
   }
   :hover {
@@ -243,16 +247,13 @@ const ContactBlob = () => {
         <Close />
       </CloseWrapper>
       <BlobWrapper contact={contact}>
-        <CloseOpacity contact={contact} onClick={() => setContact(false)} />
         <ContactDeets contact={contact}>
           {contactTextHandler()}
           <SocialWrap>
             <SocialBlock color="white" text={true} />
           </SocialWrap>
         </ContactDeets>
-        <Blob />
       </BlobWrapper>
-      <Ball contact={contact} />
     </>
   );
 };
