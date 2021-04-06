@@ -29,9 +29,28 @@ const BlobWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => (props.contact ? "#252529" : "transparent")};
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
   opacity: ${(props) => (props.contact ? "1" : "0")};
   color: #fafaed;
+  ::after,
+  ::before {
+    position: absolute;
+    top: 0;
+
+    content: "";
+    width: 50vw;
+    height: 100vh;
+    background-color: ${(props) => (props.contact ? "#0A0A0A" : "transparent")};
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+  ::before {
+    right: ${(props) => (props.contact ? "0" : "-50vw")};
+  }
+  ::after {
+    left: ${(props) => (props.contact ? "0" : "-50vw")};
+  }
   img,
   a > svg {
     animation-delay: 0s;
@@ -62,8 +81,8 @@ const ContactDeets = styled.div`
   position: absolute;
   left: calc(50% - 300px);
   max-width: 600px;
-  transition-duration: 0.2s;
-
+  transition-duration: 0.3s;
+  transition-delay: 0.3s;
   transition-timing-function: ease-in-out;
   visibility: hidden;
   visibility: ${(props) => props.contact && "visible"};
@@ -140,8 +159,12 @@ const Ball = styled.div`
 
 const CloseWrapper = styled.div`
   position: fixed;
-  top: 6px;
-  right: 6px;
+  top: 12px;
+  right: 24px;
+  @media (max-width: 900px) {
+    top: 12px;
+    right: 8px;
+  }
   width: 72px;
   height: 72px;
   z-index: 700;

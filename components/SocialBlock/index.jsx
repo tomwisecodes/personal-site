@@ -21,6 +21,7 @@ const A = styled.a`
   p {
     font-size: 16px;
     color: ${(props) => (props.color === "white" ? "white" : "inherit")};
+    font-family: "Rigton-Medium";
   }
 `;
 
