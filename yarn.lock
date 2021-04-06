@@ -4254,6 +4254,13 @@ react-ikonate@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-ikonate/-/react-ikonate-2.0.1.tgz#8405bfe982a9506f0a15e2dcffaf52b6799f09ec"
   integrity sha512-UmbWzfuTd8Pfbuf7vp4TODI/Lm0CUM9Ll5j3kyL7gxMRYgA6RkiU1UAMLE8GiJKEHopF39q17oQQSDldXvfd3g==
 
+react-in-viewport@^1.0.0-alpha.16:
+  version "1.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/react-in-viewport/-/react-in-viewport-1.0.0-alpha.16.tgz#98ea6bdf8b9ed527abc16532efb0f911bc74754e"
+  integrity sha512-qYW7ndaFZkqgDOMPtCVNnHK6NmKXIEhQqmpeXRKh3cZ1mkhOU6LHF9ivu6K8PoWpfZo8c32m5sJ/9VKDlEmOeA==
+  dependencies:
+    hoist-non-react-statics "^3.0.0"
+
 react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

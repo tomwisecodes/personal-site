@@ -6,13 +6,13 @@ const theme = {
   title: "Oak National Academy Teachers",
   baseFontSize: "12px",
   baseLineHeight: "12px",
-  headerFontFamily: ["Rigton-SemiBold", "sans-serif"],
-  bodyFontFamily: ["Rigton-Medium", "sans-serif"],
-  headerColor: "#0800C9",
-  bodyColor: "#040234",
+  headerFontFamily: ["Rigton-Medium", "sans-serif"],
+  bodyFontFamily: ["bely", "serif"],
+  headerColor: "#252529",
+  bodyColor: "#252529",
   headerWeight: 400,
   bodyWeight: 400,
-  boldWeight: 600,
+  boldWeight: 500,
   /* eslint-disable-next-line no-unused-vars */
   overrideStyles: ({ adjustFontSizeTo, scale, rhythm }, options) => ({
     body: {
@@ -25,10 +25,13 @@ const theme = {
     },
     p: {
       marginBottom: "12px",
-      fontFamily: "sf",
+      fontFamily: "bely",
     },
     li: {
       marginBottom: "12px",
+    },
+    button: {
+      fontFamily: "Rigton-Medium",
     },
     a: {
       color: "#00468C",

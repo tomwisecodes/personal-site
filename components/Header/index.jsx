@@ -2,92 +2,41 @@ import { useState } from "react";
 import styled from "styled-components";
 import HeaderMenu from "../HeaderMenu";
 import SocialBlock from "../SocialBlock";
-import Logo from "../Logo";
 import MobileMenu from "../MobileMenu";
 import { useRouter } from "next/router";
 import FlexWrapper from "../FlexWrapper";
 
-const HeaderWrapper = styled.header`
+const HeaderWrap = styled.header`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 72px;
-  text-align: center;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-`;
-
-const HeaderWrapperHome = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 36px;
-  text-align: left;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  z-index: 100;
-  background-color: #0800c9;
-`;
-
-const FixHeaderHeight = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  margin-top: 72px;
-`;
-const Socials = styled.div`
-  height: 100%;
-  display: flex;
+  padding: 12px 24px;
   align-items: center;
-  padding: 6px 24px;
-  a {
-    margin-bottom: -6px;
-  }
-  @media (max-width: 550px) {
-    display: none;
-  }
+  width: 100vw;
 `;
 
-const MobileMenuToggle = styled.button`
-  display: none;
-  @media (max-width: 769px) {
-    display: block;
-    border: none;
-    font-size: 24px;
-    padding: 0px 12px;
+const Logo = styled.a`
+  font-size: 24px;
+  line-height: 24px;
+  color: #252529;
+  text-decoration: none;
+  font-family: Rigton-semibold, sans-serif;
+`;
+
+const SayHello = styled.a`
+  padding: 24px;
+  border-radius: 100px;
+  border: none;
+  font-size: 20px;
+  line-height: 20px;
+  background-color: #252529;
+  color: #fafaed;
+  cursor: pointer;
+  border: solid 2px #252529;
+  font-family: "Rigton-Medium";
+  :hover {
     background-color: transparent;
-    border-radius: 100px;
-    color: white;
-    cursor: pointer;
-    height: 100%;
-  }
-`;
-
-const MenuItems = styled(FlexWrapper)`
-  height: 100%;
-  align-items: center;
-`;
-
-const Mobile = styled.div`
-  display: none;
-  @media (max-width: 769px) {
-    display: block;
-    height: 100%;
-    > div {
-      height: 100%;
-    }
-  }
-`;
-
-const Desktop = styled.div`
-  height: 100%;
-  @media (max-width: 769px) {
-    display: none;
+    color: #252529;
   }
 `;
 
@@ -98,45 +47,10 @@ const Header = () => {
   console.log(router.pathname);
 
   return (
-    <>
-      {router.pathname !== "/" ? (
-        <>
-          <HeaderWrapperHome>
-            <Logo header={true} />
-            <Desktop>
-              <MenuItems align="center">
-                <Socials>
-                  <SocialBlock />
-                </Socials>
-                <HeaderMenu />
-              </MenuItems>
-            </Desktop>
-            <Mobile>
-              <FlexWrapper align="center">
-                <MenuItems align="center">
-                  <Socials>
-                    <SocialBlock />
-                  </Socials>
-                  <HeaderMenu />
-                </MenuItems>
-                <MobileMenuToggle onClick={() => setToggleMenu((i) => !i)}>
-                  {toggleMenu ? "" : "Menu"}
-                </MobileMenuToggle>
-              </FlexWrapper>
-            </Mobile>
-          </HeaderWrapperHome>
-          <FixHeaderHeight />
-          <MobileMenu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-        </>
-      ) : (
-        <>
-          <HeaderWrapper>
-            <Logo />
-          </HeaderWrapper>
-          <FixHeaderHeight />
-        </>
-      )}
-    </>
+    <HeaderWrap>
+      <Logo>Tom Wise</Logo>
+      <SayHello href="mailto:hello@tomwise.me">Say hello</SayHello>
+    </HeaderWrap>
   );
 };
 

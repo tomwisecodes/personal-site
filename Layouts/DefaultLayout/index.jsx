@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import MouseCircle from "../../components/MouseCircle";
+
 import styled from "styled-components";
 import ContactBlob from "../../components/ContactBlob";
 
@@ -155,19 +155,6 @@ const DefaultLayout = ({ children }) => {
   //   initialLoadUp();
   // }, []);
 
-  function isTouchDevice() {
-    if (typeof window !== "undefined") {
-      return (
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0
-      );
-    }
-    return null;
-  }
-  useEffect(() => {
-    isTouchDevice();
-  }, []);
   return (
     <>
       <Header />
@@ -185,7 +172,7 @@ const DefaultLayout = ({ children }) => {
 
       <ContactBlob />
 
-      {isTouchDevice && <MouseCircle />}
+      {/* {isTouchDevice && <MouseCircle />} */}
 
       {/* 
       <style jsx global>

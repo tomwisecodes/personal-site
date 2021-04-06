@@ -66,6 +66,7 @@ function WiseyBoyApp({ Component, pageProps }) {
   `,
           }}
         />
+        <link rel="stylesheet" href="https://use.typekit.net/fia8vvi.css" />
       </Head>
       <BlobContextProvider>
         <Component {...pageProps} />

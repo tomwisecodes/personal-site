@@ -19,27 +19,59 @@ const hover = keyframes`
 
 const Circle = styled.div`
   position: absolute;
-  border-radius: 50%;
-  border: 2px solid #040234;
-  transition: opacity 0.3s ease 0s;
-  top: -15px;
-  left: -15px;
-  width: 30px;
-  height: 30px;
+
+  background-color: transparent;
+  cursor: none !important;
+  top: -240px;
+  left: 0px;
+  max-width: 396px;
   margin-right: 24px;
-  backface-visibility: hidden;
+  padding: 24px;
+  visibility: ${(props) => (props.showdef ? "visible" : "hidden")};
+
+  transition-duration: ${(props) => (props.showdef ? "0" : "0.3s")};
   pointer-events: none;
-  z-index: 9999;
-  animation: ${(props) => (props.linkHovered ? hover : "unset")};
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
+  ::before {
+    background-color: #252529;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: ${(props) => (props.showdef ? "100%" : "0px")};
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    z-index: -1;
+    border: ${(props) => (props.showdef ? "4px solid #fafaed" : "none")};
+  }
+  * {
+    color: #fafaed;
+  }
+  p {
+    font-size: 18px;
+    line-height: 24px;
+    opacity: ${(props) => (props.showdef ? 1 : 0)};
+    transition-duration: 0.3s;
+    transition-delay: 0.5s;
+    transition-timing-function: ease-in-out;
+  }
   @media (max-width: 900px) {
     display: none;
   }
 `;
+const Label = styled.p`
+  font-family: Rigton-semiBold, serif;
+  font-family: 20px;
+  :first-child {
+    margin-bottom: 0;
+  }
+`;
+const Source = styled.p`
+  font-size: 14px;
+  font-style: italic;
+`;
 
-const MouseCircle = () => {
+const MouseCircle = ({ showdef }) => {
   const cricleRef = useRef();
   const [mouseX, setMouseX] = useState(null);
   const [mouseY, setMouseY] = useState(null);
@@ -84,113 +116,19 @@ const MouseCircle = () => {
     cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
   }, [mouseX, mouseY]);
 
-  // const dots = [];
-  // const classNames = ["square", "circle", "triangle", "dimaond", "square"];
-  // const colours = ["#0800C9", "#5859cc", "#0ac959", "#c92014", "#c9ab14"];
-  // for (let i = 0; i < 8; i++) {
-  //   const node = document.createElement("div");
-  //   const theClass = classNames[Math.floor(Math.random() * classNames.length)];
-  //   node.className = theClass;
-  //   document.body.appendChild(node);
-  //   dots.push(node);
-  // }
-  // let currentDot = 0;
-
-  // function mouseTrail(event) {
-  //   const dot = dots[currentDot];
-  //   const theColour = colours[Math.floor(Math.random() * colours.length)];
-  //   const min = -5;
-  //   const max = 5;
-  //   const minHue = -30;
-  //   const maxHue = 30;
-  //   const random = Math.floor(Math.random() * (+max - +min)) + +min;
-  //   const randomHue = Math.floor(Math.random() * (+maxHue - +minHue)) + +minHue;
-  //   if (dot.classList.value !== "triangle") {
-  //     dot.style.backgroundColor = theColour;
-  //   } else {
-  //     dot.style.borderTopColor = theColour;
-  //     dot.style.transform = "rotate(" + Math.random() * 360 + "deg)";
-  //   }
-  //   dot.style.filter = "hue-rotate(" + randomHue + "deg)";
-  //   dot.style.display = "block";
-  //   dot.style.left = event.pageX + random + "px";
-  //   dot.style.top = event.pageY + random + "px";
-  //   dot.style.opacity = "0";
-  //   dot.style.animationName = "fader";
-  //   dot.style.animationDuration = "2000ms";
-  //   dot.style.animationFillMode = "forwards";
-  //   setTimeout(function () {
-  //     dot.style.animationName = "unset";
-  //   }, 800);
-
-  //   currentDot = (currentDot + 1) % dots.length;
-  // }
-
   return (
     <>
-      <Circle ref={cricleRef} linkHovered={linkHovered} />
-      <style jsx global>
-        {`
-          @keyframes fader {
-            0 {
-              opacity: 1;
-            }
-            99% {
-              opacity: 1;
-            }
-            100% {
-              opacity: 0;
-            }
-          }
-          .square {
-            /* className for trail elements */
-            position: absolute;
-            height: 12px;
-            width: 12px;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-
-            z-index: -1;
-          }
-
-          .circle {
-            /* className for trail elements */
-            position: absolute;
-            height: 16px;
-            width: 16px;
-            border-radius: 300px;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-
-            z-index: -1;
-          }
-          .triangle {
-            /* className for trail elements */
-            position: absolute;
-            width: 0px;
-            border: 12px solid;
-            border-top-color: transparent;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            border-bottom-color: transparent;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-
-            z-index: -1;
-          }
-          .dimaond {
-            /* className for trail elements */
-            position: absolute;
-            height: 16px;
-            width: 16px;
-            transform: rotate(45deg);
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-
-            z-index: -1;
-          }
-        `}
-      </style>
+      <Circle ref={cricleRef} showdef={showdef}>
+        <Label>"UX Unicorn"</Label>
+        <Label>noun</Label>
+        <p>
+          Mythical user experience designer with an advanced and adaptive skill
+          range. Outstanding skills in graphic design, rapid prototyping, front
+          end development, user testing, technical specifications, marketing and
+          branding.
+        </p>
+        <Source>Source: uxunicorn.com</Source>
+      </Circle>
     </>
   );
 };
