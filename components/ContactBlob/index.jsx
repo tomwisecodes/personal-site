@@ -182,7 +182,7 @@ const CloseWrapper = styled.div`
     }
   }
   :hover {
-    background-color: #18922b;
+    background-color: #0ac959;
   }
 `;
 const SocialWrap = styled(FlexWrapper)`
