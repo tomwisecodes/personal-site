@@ -20,8 +20,8 @@ const theme = {
       lineHeight: "12px",
     },
     "p, a, li, input, textarea": {
-      fontSize: "20px",
-      lineHeight: "30px",
+      fontSize: "24px",
+      lineHeight: "36px",
     },
     p: {
       marginBottom: "12px",
