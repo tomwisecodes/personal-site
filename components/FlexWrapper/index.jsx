@@ -6,9 +6,15 @@ const Flex = styled.div`
   justify-content: ${(props) => (props.justify ? props.justify : "unset")};
   align-items: ${(props) => (props.align ? props.align : "unset")};
   flex-direction: ${(props) => (props.direction ? props.direction : "unset")};
+  width: ${(props) => (props.width ? props.width + "%" : "unset")};
   > * {
-    margin-right: ${(props) =>
-      props.childrenMarginRight ? props.childrenMarginRight : "unset"};
+    margin-right: ${(props) => {
+      if (!props.width) {
+        return props.childrenMarginRight ? props.childrenMarginRight : "unset";
+      }
+      return "0px";
+    }};
+
     :last-child {
       margin-right: 0;
     }
@@ -23,6 +29,7 @@ const FlexWrapper = ({
   direction,
   align,
   childrenMarginRight,
+  width,
 }) => {
   const style = {
     wrap,
@@ -30,6 +37,7 @@ const FlexWrapper = ({
     direction,
     align,
     childrenMarginRight,
+    width,
   };
   return (
     <Flex {...style} className={className}>

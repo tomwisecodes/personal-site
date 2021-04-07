@@ -1,20 +1,18 @@
 import styled from "styled-components";
 
 const ButtonWrap = styled.button`
-  font-size: 16px;
-  line-height: 16px;
-  padding: 15px 24px;
-  background-color: #0ac959;
-  border: 0;
-  outline: 0;
-  color: #080559;
-  margin-top: 12px;
+  padding: 24px;
+  border-radius: 100px;
+  border: none;
+  font-size: 20px;
+  line-height: 20px;
+  background-color: #252529;
+  color: #fafaed;
   cursor: pointer;
-  border: solid 3px #0ac959;
-  transition-duration: 0.3s;
+  border: solid 2px #252529;
   :hover {
-    border-color: #0800c9;
-    color: #0800c9;
+    background-color: transparent;
+    color: #252529;
   }
 `;
 

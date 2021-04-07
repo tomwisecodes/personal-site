@@ -9,9 +9,12 @@ import MouseCircle from "../components/MouseCircle";
 import Hero from "../components/Hero";
 import clients from "../data";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import Button from "../components/Button";
+import FlexWrapper from "../components/FlexWrapper";
 
 const HomeWrap = styled(Container)`
-  height: calc(100vh - 144px);
+  height: calc(100vh);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,13 +63,17 @@ const Section = styled(Container)`
 `;
 
 const ImageWrap = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 4px;
 `;
 const LogoContain = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-top: ${(props) => (props.mt ? props.mt : "0px")};
 `;
 
 const SkillsWrap = styled.ul`
@@ -87,9 +94,17 @@ const Skill = styled.li`
   color: white;
   margin: 4px;
 `;
+const MenuContainer = styled.div`
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: ${(props) => (props.left ? "flex-start" : "flex-end")};
+`;
 const MenuOuter = styled.div`
+  position: absolute;
   width: 66%;
   height: unset;
+  top: 100px;
 `;
 const MenuWrap = styled.ul`
   display: flex;
@@ -97,7 +112,10 @@ const MenuWrap = styled.ul`
   background-color: #252529;
   padding: 24px;
   border-radius: 12px;
-
+  opacity: ${(props) => (props.show ? "1" : "0")};
+  margin-top: ${(props) => (props.show ? "0px" : "80px")};
+  transition-duration: 0.6s;
+  transition-delay: 1s;
   button,
   a {
     color: #fafaed;
@@ -119,12 +137,12 @@ const MenuWrap = styled.ul`
   }
 `;
 
-const LogoGrid = ({ type }) => {
+const LogoGrid = ({ type, mt }) => {
   const designerCli = clients.filter((_) => _.ux || _.graphic);
   const devCli = clients.filter((_) => _.dev);
   const selectedClients = type === "designer" ? designerCli : devCli;
   return (
-    <LogoContain>
+    <LogoContain mt={mt}>
       {selectedClients.map((client) => (
         <ImageWrap key={client.id}>
           <Image
@@ -138,10 +156,10 @@ const LogoGrid = ({ type }) => {
   );
 };
 
-const Menu = () => {
+const Menu = ({ show }) => {
   return (
     <MenuOuter>
-      <MenuWrap>
+      <MenuWrap show={show}>
         <p>Menu</p>
         <li>
           <button>My Work</button>
@@ -178,6 +196,12 @@ const HomePage = () => {
   useEffect(() => {
     isTouchDevice();
   }, []);
+
+  const [ref, inView] = useInView({
+    threshold: 0,
+  });
+
+  console.log("view", inView);
   return (
     <>
       <DefaultLayout>
@@ -190,7 +214,7 @@ const HomePage = () => {
             devRef={devRef}
           />
         </HomeWrap>
-        {/* <Section>
+        <Section>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>My Work</h2>
@@ -215,7 +239,9 @@ const HomePage = () => {
               width={[1, 1 / 2, 1 / 2]}
               style={{ display: `flex`, justifyContent: `flex-end` }}
             >
-              <Menu />
+              <MenuContainer inView={inView} ref={ref}>
+                <Menu show={inView} />
+              </MenuContainer>
             </Col>
             <Col width={[1]}></Col>
           </Row>
@@ -223,7 +249,9 @@ const HomePage = () => {
         <Section ref={desRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <LogoGrid clients={clients} type="designer" />
+              <MenuContainer inView={inView} ref={ref} left={true}>
+                <Menu show={inView} />
+              </MenuContainer>
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>Designer</h2>
@@ -258,6 +286,17 @@ const HomePage = () => {
                 <Skill>HotJar</Skill>
               </SkillsWrap>
             </Col>
+            <Col width={[1]}>
+              <h3>Some projects I have worked on as a designer</h3>
+              <LogoGrid clients={clients} type="designer" mt="0px" />
+              <h5 style={{ marginTop: `12px` }}>
+                To hear about my involvement in any of the projects above
+                request a portfolio and I will take you though.
+              </h5>
+              <FlexWrapper justify="center">
+                <Button>Request Portfolio</Button>
+              </FlexWrapper>
+            </Col>
           </Row>
         </Section>
         <Section ref={devRef}>
@@ -286,9 +325,12 @@ const HomePage = () => {
               </SkillsWrap>
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <LogoGrid type="developer" clients={clients} />
+              <LogoGrid type="developer" clients={clients} mt="100px" />
             </Col>
           </Row>
+        </Section>
+        {/* <Section >
+          <p>{inView.toString()}</p>
         </Section> */}
       </DefaultLayout>
     </>
