@@ -24,7 +24,7 @@ const MenuWrap = styled.ul`
   opacity: ${(props) => (props.show ? "1" : "0")};
   margin-top: ${(props) => (props.show ? "0px" : "80px")};
   transition-duration: 0.6s;
-  transition-delay: 1s;
+  transition-delay: 0.4s;
   button,
   a {
     color: #fafaed;

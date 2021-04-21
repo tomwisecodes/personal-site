@@ -101,7 +101,7 @@ const SocialWrap = styled.div`
 `;
 
 const ContactBlob = () => {
-  const { contact, setContact, contactTextSource } = useContext(BlobContext);
+  const { setContactTextSource, contactTextSource } = useContext(BlobContext);
 
   const contactTextHandler = () => {
     if (contactTextSource === "social") {
@@ -175,13 +175,13 @@ const ContactBlob = () => {
     <>
       <CloseWrapper
         className="hover"
-        contact={contact}
-        onClick={() => setContact(false)}
+        contact={!!contactTextSource}
+        onClick={() => setContactTextSource(false)}
       >
         <Close />
       </CloseWrapper>
-      <BlobWrapper contact={contact}>
-        <ContactDeets contact={contact}>
+      <BlobWrapper contact={!!contactTextSource}>
+        <ContactDeets contact={!!contactTextSource}>
           {contactTextHandler()}
           <SocialWrap justify="center">
             <SocialBlock color="white" text={true} />

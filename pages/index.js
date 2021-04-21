@@ -81,7 +81,6 @@ const Skill = styled.li`
 `;
 
 const HomePage = () => {
-  const { setContact, setContactTextSource } = useContext(BlobContext);
   const [showdef, setShowDef] = useState(false);
   const [mouseX, setMouseX] = useState(null);
   const [mouseY, setMouseY] = useState(null);
@@ -125,6 +124,7 @@ const HomePage = () => {
     "UI design",
     "Branding",
   ];
+  const { contactTextSource, setContactTextSource } = useContext(BlobContext);
   function isTouchDevice() {
     if (typeof window !== "undefined") {
       return (
@@ -275,6 +275,15 @@ const HomePage = () => {
                 ))}
               </SkillsWrap>
             </Col>
+            <Col width={[1, 1 / 2, 1 / 2]}>
+              <Menu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
+            </Col>
             <Col width={[1]}>
               <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
                 Notable dev projects:
@@ -289,7 +298,13 @@ const HomePage = () => {
             </Col>
             <Col width={[1]}>
               <FlexWrapper justify="center">
-                <Button>Request Portfolio</Button>
+                <Button
+                  onClick={() => {
+                    setContactTextSource("social");
+                  }}
+                >
+                  Request Portfolio {contactTextSource.toString()}
+                </Button>
               </FlexWrapper>
             </Col>
           </Row>

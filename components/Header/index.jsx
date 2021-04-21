@@ -58,13 +58,12 @@ const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const router = useRouter();
 
-  const { setContact, setContactTextSource } = useContext(BlobContext);
+  const { setContactTextSource } = useContext(BlobContext);
   return (
     <HeaderWrap>
       <Logo>Tom Wise</Logo>
       <SayHello
         onClick={() => {
-          setContact(true);
           setContactTextSource("social");
         }}
       >
