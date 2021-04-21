@@ -3,15 +3,14 @@ import { Col, Row } from "../components/Grid";
 import Container from "../components/Container";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import styled from "styled-components";
-import Link from "next/link";
 import { BlobContext } from "../components/Context/BlobContext";
 import MouseCircle from "../components/MouseCircle";
 import Hero from "../components/Hero";
 import clients from "../data";
-import Image from "next/image";
-import { useInView } from "react-intersection-observer";
 import Button from "../components/Button";
 import FlexWrapper from "../components/FlexWrapper";
+import Menu from "../components/Menu";
+import LogoGrid from "../components/LogoGrid";
 
 const HomeWrap = styled(Container)`
   height: calc(100vh);
@@ -57,23 +56,9 @@ const Section = styled(Container)`
   padding-top: 96px;
   padding-bottom: 96px;
   h2 {
-    font-size: 60px;
+    font-size: 72px;
     line-height: 84px;
   }
-`;
-
-const ImageWrap = styled.div`
-  width: 80px;
-  height: 80px;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 4px;
-`;
-const LogoContain = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: ${(props) => (props.mt ? props.mt : "0px")};
 `;
 
 const SkillsWrap = styled.ul`
@@ -94,95 +79,52 @@ const Skill = styled.li`
   color: white;
   margin: 4px;
 `;
-const MenuContainer = styled.div`
-  width: 100%;
-  display: flex;
-  position: relative;
-  justify-content: ${(props) => (props.left ? "flex-start" : "flex-end")};
-`;
-const MenuOuter = styled.div`
-  position: absolute;
-  width: 66%;
-  height: unset;
-  top: 100px;
-`;
-const MenuWrap = styled.ul`
-  display: flex;
-  flex-direction: column;
-  background-color: #252529;
-  padding: 24px;
-  border-radius: 12px;
-  opacity: ${(props) => (props.show ? "1" : "0")};
-  margin-top: ${(props) => (props.show ? "0px" : "80px")};
-  transition-duration: 0.6s;
-  transition-delay: 1s;
-  button,
-  a {
-    color: #fafaed;
-    width: unset;
-    font-size: 30px;
-    line-height: 30px;
-    padding: 6px 12px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    :last-child {
-      margin-bottom: 0;
-    }
-  }
-  p {
-    color: #fafaed;
-    font-size: 24px;
-    padding-left: 12px;
-  }
-`;
-
-const LogoGrid = ({ type, mt }) => {
-  const designerCli = clients.filter((_) => _.ux || _.graphic);
-  const devCli = clients.filter((_) => _.dev);
-  const selectedClients = type === "designer" ? designerCli : devCli;
-  return (
-    <LogoContain mt={mt}>
-      {selectedClients.map((client) => (
-        <ImageWrap key={client.id}>
-          <Image
-            src={client.imageThumb}
-            alt={client.clientName + `logo`}
-            layout="fill"
-          />
-        </ImageWrap>
-      ))}
-    </LogoContain>
-  );
-};
-
-const Menu = ({ show }) => {
-  return (
-    <MenuOuter>
-      <MenuWrap show={show}>
-        <p>Menu</p>
-        <li>
-          <button>My Work</button>
-        </li>
-        <li>
-          <button>Designer</button>
-        </li>
-        <li>
-          <button>Developer</button>
-        </li>
-        <li>
-          <button>Bio</button>
-        </li>
-      </MenuWrap>
-    </MenuOuter>
-  );
-};
 
 const HomePage = () => {
   const { setContact, setContactTextSource } = useContext(BlobContext);
   const [showdef, setShowDef] = useState(false);
+  const [mouseX, setMouseX] = useState(null);
+  const [mouseY, setMouseY] = useState(null);
   const desRef = useRef();
   const devRef = useRef();
+  const workRef = useRef();
+  const cricleRef = useRef();
+  const devExp = [
+    "Next.js",
+    "Gatsby",
+    "React.js",
+    "Vercel",
+    "GraphQL",
+    "StoryBook",
+    "Github",
+    "WordPress",
+    "mySQL",
+    "deployHQ",
+    "bitBucket",
+  ];
+  const desSkill = [
+    "Figma",
+    "FramrX",
+    "Full Adobe suite",
+    "Sketch",
+    "Google Analytics",
+    "Google Optimize",
+    "MixPanel",
+    "HotJar",
+  ];
+  const desExp = [
+    "Design Thinking",
+    "User Centered Design",
+    "Building Design Systems",
+    "Qualative User Research",
+    "Usability Testing",
+    "Building Personas",
+    "Quantitative Research",
+    "A/B Testing",
+    "Wireframing",
+    "UI design",
+    "Branding",
+  ];
   function isTouchDevice() {
     if (typeof window !== "undefined") {
       return (
@@ -197,15 +139,32 @@ const HomePage = () => {
     isTouchDevice();
   }, []);
 
-  const [ref, inView] = useInView({
-    threshold: 0,
-  });
+  useEffect(() => {
+    if (window === "undefined") {
+      return null;
+    }
+    const setFromEvent = (e) => {
+      setMouseX(e.pageX);
+      setMouseY(e.pageY);
+    };
 
-  console.log("view", inView);
+    window.addEventListener("mousemove", setFromEvent);
+
+    return () => {
+      window.removeEventListener("mousemove", setFromEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
+  }, [mouseX, mouseY]);
+
   return (
     <>
       <DefaultLayout>
-        {isTouchDevice && <MouseCircle showdef={showdef} />}
+        {isTouchDevice && (
+          <MouseCircle cricleRef={cricleRef} showdef={showdef} />
+        )}
         <HomeWrap>
           <Hero
             showdef={showdef}
@@ -214,7 +173,7 @@ const HomePage = () => {
             devRef={devRef}
           />
         </HomeWrap>
-        <Section>
+        <Section ref={workRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>My Work</h2>
@@ -239,9 +198,13 @@ const HomePage = () => {
               width={[1, 1 / 2, 1 / 2]}
               style={{ display: `flex`, justifyContent: `flex-end` }}
             >
-              <MenuContainer inView={inView} ref={ref}>
-                <Menu show={inView} />
-              </MenuContainer>
+              <Menu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
             </Col>
             <Col width={[1]}></Col>
           </Row>
@@ -249,9 +212,14 @@ const HomePage = () => {
         <Section ref={desRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <MenuContainer inView={inView} ref={ref} left={true}>
-                <Menu show={inView} />
-              </MenuContainer>
+              <Menu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                left={true}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>Designer</h2>
@@ -262,37 +230,28 @@ const HomePage = () => {
               </p>
               <h3>Well Practised in:</h3>
               <SkillsWrap>
-                <Skill>Design Thinking</Skill>
-                <Skill>User Centered Design</Skill>
-                <Skill>Building Design Systems</Skill>
-                <Skill>Qualative User Research</Skill>
-                <Skill>Usability Testing</Skill>
-                <Skill>Building Personas</Skill>
-                <Skill>Quantitative Research</Skill>
-                <Skill>A/B Testing</Skill>
-                <Skill>Wireframing</Skill>
-                <Skill>UI design</Skill>
-                <Skill>Branding</Skill>
+                {desExp.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
               <h3>Love using:</h3>
               <SkillsWrap>
-                <Skill>Figma</Skill>
-                <Skill>FramrX</Skill>
-                <Skill>Full Adobe suite</Skill>
-                <Skill>Sketch</Skill>
-                <Skill>Google Analytics</Skill>
-                <Skill>Google Optimize</Skill>
-                <Skill>MixPanel</Skill>
-                <Skill>HotJar</Skill>
+                {desSkill.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
             </Col>
             <Col width={[1]}>
-              <h3>Some projects I have worked on as a designer</h3>
-              <LogoGrid clients={clients} type="designer" mt="0px" />
-              <h5 style={{ marginTop: `12px` }}>
-                To hear about my involvement in any of the projects above
-                request a portfolio and I will take you though.
-              </h5>
+              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
+                Notable design projects:
+              </h3>
+              <LogoGrid
+                clients={clients}
+                mouseX={mouseX}
+                mouseY={mouseY}
+                type="designer"
+                mt="0px"
+              />
               <FlexWrapper justify="center">
                 <Button>Request Portfolio</Button>
               </FlexWrapper>
@@ -311,21 +270,27 @@ const HomePage = () => {
               </p>
               <h3>Experience with:</h3>
               <SkillsWrap>
-                <Skill>Next.js</Skill>
-                <Skill>Gatsby</Skill>
-                <Skill>React.js</Skill>
-                <Skill>Vercel</Skill>
-                <Skill>GraphQL</Skill>
-                <Skill>StoryBook</Skill>
-                <Skill>Github</Skill>
-                <Skill>WordPress</Skill>
-                <Skill>mySQL</Skill>
-                <Skill>deployHQ</Skill>
-                <Skill>bitBucket</Skill>
+                {devExp.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
             </Col>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <LogoGrid type="developer" clients={clients} mt="100px" />
+            <Col width={[1]}>
+              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
+                Notable dev projects:
+              </h3>
+              <LogoGrid
+                clients={clients}
+                mouseX={mouseX}
+                mouseY={mouseY}
+                type="developer"
+                mt="0px"
+              />
+            </Col>
+            <Col width={[1]}>
+              <FlexWrapper justify="center">
+                <Button>Request Portfolio</Button>
+              </FlexWrapper>
             </Col>
           </Row>
         </Section>

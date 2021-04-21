@@ -85,23 +85,23 @@ const TitleLinkWrap = ({ children, theRef }) => {
   const [seeMore, setSeeMore] = useState(false);
   return (
     <TitleLink
-    // seeMore={seeMore}
-    // onClick={() =>
-    //   theRef.current.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "start",
-    //     inline: "nearest",
-    //   })
-    // }
-    // onMouseEnter={() => setSeeMore(true)}
-    // onMouseLeave={() => setSeeMore(false)}
+      seeMore={seeMore}
+      onClick={() =>
+        theRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        })
+      }
+      onMouseEnter={() => setSeeMore(true)}
+      onMouseLeave={() => setSeeMore(false)}
     >
       {children}
     </TitleLink>
   );
 };
 
-const Hero = ({ showdef, setShowDef, devRef, desRef }) => {
+const Hero = ({ setShowDef, devRef, desRef }) => {
   return (
     <>
       <Row>
@@ -136,7 +136,7 @@ const Hero = ({ showdef, setShowDef, devRef, desRef }) => {
           </h2>
         </Col>
         <Col width={[1, 1 / 2, 1 / 2]}>
-          <p style={{ marginTop: `12px` }}>
+          <p style={{ marginTop: `6px` }}>
             I sepcialise in UX design, building design systems, designing UI’s
             and building UI’s. Im a experianced user researcher and have coded
             many projects from conception to production.{" "}

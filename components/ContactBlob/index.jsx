@@ -44,7 +44,7 @@ const BlobWrapper = styled.div`
 const ContactDeets = styled.div`
   position: absolute;
   left: calc(50% - 200px);
-  max-width: 400px;
+  max-width: 420px;
   transition-duration: 0.3s;
   transition-delay: 0.3s;
   transition-timing-function: ease-in-out;
@@ -96,13 +96,13 @@ const CloseWrapper = styled.div`
     background-color: #0ac959;
   }
 `;
-const SocialWrap = styled(FlexWrapper)`
-  margin-top: 24px;
+const SocialWrap = styled.div`
+  margin: 24px -12px 0px -12px;
 `;
 
 const ContactBlob = () => {
   const { contact, setContact, contactTextSource } = useContext(BlobContext);
-  console.log("this", contactTextSource);
+
   const contactTextHandler = () => {
     if (contactTextSource === "social") {
       return (

@@ -19,7 +19,6 @@ const hover = keyframes`
 
 const Circle = styled.div`
   position: absolute;
-
   background-color: transparent;
   cursor: none !important;
   top: -240px;
@@ -71,51 +70,7 @@ const Source = styled.p`
   font-style: italic;
 `;
 
-const MouseCircle = ({ showdef }) => {
-  const cricleRef = useRef();
-  const [mouseX, setMouseX] = useState(null);
-  const [mouseY, setMouseY] = useState(null);
-  const [mouseMove, setMouseMove] = useState(null);
-  const [linkHovered, setLinkHovered] = useState(false);
-
-  const handleLinkHoverEvents = () => {
-    document.querySelectorAll("a").forEach((el) => {
-      el.addEventListener("mouseover", () => setLinkHovered(true));
-      el.addEventListener("mouseout", () => setLinkHovered(false));
-    });
-    document.querySelectorAll("button", ".hover").forEach((el) => {
-      el.addEventListener("mouseover", () => setLinkHovered(true));
-      el.addEventListener("mouseout", () => setLinkHovered(false));
-    });
-  };
-
-  useEffect(() => {
-    if (window === "undefined") {
-      return null;
-    }
-    const setFromEvent = (e) => {
-      setMouseX(e.pageX);
-      setMouseY(e.pageY);
-    };
-    const mouseMoving = () => {
-      setMouseMove(true);
-    };
-
-    handleLinkHoverEvents();
-
-    window.addEventListener("mousemove", setFromEvent);
-    // window.addEventListener("mousemove", mouseMoving);
-    // window.addEventListener("mousemove", mouseTrail);
-
-    return () => {
-      window.removeEventListener("mousemove", setFromEvent);
-    };
-  }, []);
-
-  useEffect(() => {
-    cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
-  }, [mouseX, mouseY]);
-
+const MouseCircle = ({ showdef, cricleRef }) => {
   return (
     <>
       <Circle ref={cricleRef} showdef={showdef}>
