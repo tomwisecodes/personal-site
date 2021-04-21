@@ -136,7 +136,7 @@ const Hero = ({ showdef, setShowDef, devRef, desRef }) => {
           </h2>
         </Col>
         <Col width={[1, 1 / 2, 1 / 2]}>
-          <p style={{ marginTop: `12px` }}>
+          <p style={{ marginTop: `6px` }}>
             I sepcialise in UX design, building design systems, designing UI’s
             and building UI’s. Im a experianced user researcher and have also
             personally coded many projects from conception to production.{" "}
