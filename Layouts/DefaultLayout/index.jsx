@@ -19,7 +19,7 @@ const Chaos = styled.button`
   z-index: 10;
 `;
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = ({ children, display }) => {
   //   const [chaos, setChaos] = useState(false);
   //   const [counter, setCounter] = useState(1);
 
@@ -157,7 +157,7 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <>
-      <Header />
+      <Header display={display} />
       {/* <h1>{counter}</h1> */}
       {/* <Chaos
         onClick={() => {

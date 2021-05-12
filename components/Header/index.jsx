@@ -14,8 +14,13 @@ const HeaderWrap = styled.header`
   padding: 12px 24px;
   align-items: center;
   width: 100vw;
+  top: 0;
+  left: 0;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
   @media (max-width: 900px) {
     padding: 12px 8px;
+    top: ${(props) => (props.display ? "0" : "-100px")};
   }
 `;
 
@@ -54,13 +59,13 @@ const SayHello = styled.button`
   }
 `;
 
-const Header = () => {
+const Header = ({ display }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const router = useRouter();
 
   const { setContactTextSource } = useContext(BlobContext);
   return (
-    <HeaderWrap>
+    <HeaderWrap display={display}>
       <Logo>Tom Wise</Logo>
       <SayHello
         onClick={() => {

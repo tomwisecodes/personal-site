@@ -5,14 +5,14 @@ import clients from "../../data";
 import Image from "next/image";
 
 const LogoCont = styled.div`
-  width: 84px;
   position: absolute;
   z-index: 10;
-  top: -84px;
-  left: -84px;
+  top: -144px;
+  left: -144px;
   visibility: ${(props) => (props.showLogoCont ? "visible" : "hidden")};
-  height: 84px;
   opacity: ${(props) => (props.showLogoCont ? "1" : "0")};
+  width: 144px;
+  height: 144px;
   img {
     transition-duration: 0.6s;
     position: absolute;
@@ -32,30 +32,39 @@ const LogoCont = styled.div`
   }
 `;
 
-const ImageWrap = styled.div`
-  width: 80px;
-  height: 80px;
+const ImgWrap = styled.div`
   position: absolute;
-  border-radius: 12px;
+  bottom: 0;
+  left: 0;
+  height: ${(props) => (props.showLogoCont ? "100%" : "0")};
+  width: 100%;
   overflow: hidden;
-  margin: 4px;
-  display: ${(props) => (props.show ? "block" : "none")};
-  z-index: 10;
-  top: -60px;
-  left: 0px;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
 `;
+
 const LogoContain = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: ${(props) => (props.mt ? props.mt : "0px")};
   li {
-    font-family: "bely", "serif";
     font-size: 34px;
     line-height: 42px;
     margin-right: 12px;
     cursor: default;
     position: relative;
+    @media (max-width: 769px) {
+      z-index: -1;
+    }
+  }
+  @media (max-width: 769px) {
+    justify-content: center;
+    text-align: center;
+    li {
+      font-size: 30px;
+      line-height: 36px;
+    }
   }
 `;
 
@@ -89,8 +98,10 @@ const LogoGrid = ({ type, mt, mouseX, mouseY }) => {
             setTheLogo={setTheLogo}
           />
         ))}
-        <LogoCont showLogoCont={theLogo} ref={logoContianRef}>
-          {theLogo && <Image src={theLogo} alt={`logo`} layout="fill" />}
+        <LogoCont showLogoCont={!!theLogo} ref={logoContianRef}>
+          <ImgWrap showLogoCont={!!theLogo}>
+            {theLogo && <Image src={theLogo} alt={`logo`} layout="fill" />}
+          </ImgWrap>
         </LogoCont>
       </LogoContain>
     </>

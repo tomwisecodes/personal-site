@@ -15,7 +15,7 @@ const ItemWrap = styled.div`
   }
 `;
 
-const Button = ({ children, scrollTo }) => {
+const Button = ({ children, scrollTo, setShowMenu, mobileMenu }) => {
   const [hover, setHover] = useState(false);
   return (
     <ItemWrap
@@ -24,13 +24,14 @@ const Button = ({ children, scrollTo }) => {
       hover={hover}
     >
       <button
-        onClick={() =>
+        onClick={() => {
           scrollTo.current.scrollIntoView({
             behavior: "smooth",
             block: "start",
             inline: "nearest",
-          })
-        }
+          });
+          mobileMenu && setShowMenu(false);
+        }}
       >
         {children}
       </button>

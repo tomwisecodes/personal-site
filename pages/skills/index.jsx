@@ -24,10 +24,7 @@ const Component = (props) => (
     <div style={{ height: "100vh" }}>
       <h2>Scroll down to make component in viewport</h2>
     </div>
-    <ViewportBlock
-      onEnterViewport={() => console.log("enter")}
-      onLeaveViewport={() => console.log("leave")}
-    />
+    <ViewportBlock />
   </div>
 );
 

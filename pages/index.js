@@ -9,48 +9,9 @@ import Hero from "../components/Hero";
 import clients from "../data";
 import Button from "../components/Button";
 import FlexWrapper from "../components/FlexWrapper";
-import Menu from "../components/Menu";
+import DesktopMenu from "../components/Menu/desktopMenu";
 import LogoGrid from "../components/LogoGrid";
-
-const HomeWrap = styled(Container)`
-  height: calc(100vh);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  h1 {
-    font-size: 96px;
-    line-height: 84px;
-    margin-bottom: 36px;
-    margin-top: 240px;
-
-    cursor: none !important;
-  }
-  h2 {
-    font-size: 34px;
-    line-height: 42px;
-    .color {
-      color: #0ac959;
-    }
-  }
-  @media (max-width: 769px) {
-    h1 {
-      font-size: 60px;
-      line-height: 60px;
-      margin-bottom: 24px;
-    }
-    h2 {
-      font-size: 24px;
-      line-height: 30px;
-    }
-    img {
-      max-width: 60px;
-    }
-  }
-  > div {
-    width: 100%;
-  }
-`;
+import MobileMenu from "../components/Menu/mobileMenu";
 
 const Section = styled(Container)`
   padding-top: 96px;
@@ -84,6 +45,8 @@ const HomePage = () => {
   const [showdef, setShowDef] = useState(false);
   const [mouseX, setMouseX] = useState(null);
   const [mouseY, setMouseY] = useState(null);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [display, setDisplay] = useState(true);
   const desRef = useRef();
   const devRef = useRef();
   const workRef = useRef();
@@ -138,7 +101,6 @@ const HomePage = () => {
   useEffect(() => {
     isTouchDevice();
   }, []);
-
   useEffect(() => {
     if (window === "undefined") {
       return null;
@@ -147,45 +109,59 @@ const HomePage = () => {
       setMouseX(e.pageX);
       setMouseY(e.pageY);
     };
-
     window.addEventListener("mousemove", setFromEvent);
-
     return () => {
       window.removeEventListener("mousemove", setFromEvent);
     };
   }, []);
-
   useEffect(() => {
-    cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
+    if (isTouchDevice() === false) {
+      cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0)`;
+    }
   }, [mouseX, mouseY]);
 
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    setDisplay(prevScrollPos > currentScrollPos || currentScrollPos < 100);
+    setPrevScrollPos(currentScrollPos);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, display, handleScroll]);
   return (
     <>
-      <DefaultLayout>
-        {isTouchDevice && (
-          <MouseCircle cricleRef={cricleRef} showdef={showdef} />
-        )}
-        <HomeWrap>
-          <Hero
-            showdef={showdef}
-            setShowDef={setShowDef}
-            desRef={desRef}
-            devRef={devRef}
-          />
-        </HomeWrap>
+      <DefaultLayout display={display}>
+        <Hero
+          showdef={showdef}
+          setShowDef={setShowDef}
+          desRef={desRef}
+          devRef={devRef}
+          isTouchDevice={isTouchDevice}
+        />
         <Section ref={workRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>My Work</h2>
               <p>
-                Currently, I am leading the UX/UI design and Front End in a team
+                Currently, I am leading the UX, design and Front End in a team
                 supporting a government-funded COVID response in the Education
-                sector(Oak National Academy). Being the first designer and the
-                first developer on the project my dual passions allowed us to
-                put the first product out within 7 days of the first square
-                drawn in Figma. Since then, our small but gloriously talented
-                team has scaled to creating 3 apps welcoming 3 million users
-                learning from home per week using over 10,000 lessons.
+                sector (
+                <a
+                  href="https://thenational.academy"
+                  target="_blank"
+                  style={{ color: `#B30DC4` }}
+                >
+                  Oak National Academy
+                </a>
+                ). Being the first designer and the first developer on the
+                project my dual passions allowed us to put the first product out
+                within 7 days of the first square drawn in Figma. Since then,
+                our small but gloriously talented team has scaled to creating 3
+                apps welcoming 3 million users learning from home per week using
+                over 10,000 lessons.
+                <br />
                 <br />
                 Previously to Oak I was working at Pentlands Brands innovation
                 lab leading there UX/UI department. I have headed up digital
@@ -198,7 +174,7 @@ const HomePage = () => {
               width={[1, 1 / 2, 1 / 2]}
               style={{ display: `flex`, justifyContent: `flex-end` }}
             >
-              <Menu
+              <DesktopMenu
                 mouseX={mouseX}
                 mouseY={mouseY}
                 desRef={desRef}
@@ -212,7 +188,7 @@ const HomePage = () => {
         <Section ref={desRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <Menu
+              <DesktopMenu
                 mouseX={mouseX}
                 mouseY={mouseY}
                 left={true}
@@ -253,7 +229,9 @@ const HomePage = () => {
                 mt="0px"
               />
               <FlexWrapper justify="center">
-                <Button>Request Portfolio</Button>
+                <Button onClick={() => setContactTextSource("portfolio")}>
+                  Request Portfolio
+                </Button>
               </FlexWrapper>
             </Col>
           </Row>
@@ -261,7 +239,13 @@ const HomePage = () => {
         <Section ref={devRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2>Developer</h2>
+              <h2
+                onClick={() => {
+                  setContactTextSource("social");
+                }}
+              >
+                Developer
+              </h2>
               <p>
                 I have produced and worked on production sites using with
                 WordPress and JS frame works. I'm most comfy sitting on the
@@ -276,7 +260,7 @@ const HomePage = () => {
               </SkillsWrap>
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <Menu
+              <DesktopMenu
                 mouseX={mouseX}
                 mouseY={mouseY}
                 desRef={desRef}
@@ -298,12 +282,8 @@ const HomePage = () => {
             </Col>
             <Col width={[1]}>
               <FlexWrapper justify="center">
-                <Button
-                  onClick={() => {
-                    setContactTextSource("social");
-                  }}
-                >
-                  Request Portfolio {contactTextSource.toString()}
+                <Button onClick={() => setContactTextSource("portfolio")}>
+                  Request Portfolio
                 </Button>
               </FlexWrapper>
             </Col>
@@ -312,6 +292,20 @@ const HomePage = () => {
         {/* <Section >
           <p>{inView.toString()}</p>
         </Section> */}
+        {isTouchDevice && (
+          <MouseCircle
+            cricleRef={cricleRef}
+            showdef={showdef}
+            setShowDef={setShowDef}
+            isTouchDevice={isTouchDevice}
+          />
+        )}
+        <MobileMenu
+          workRef={workRef}
+          desRef={desRef}
+          devRef={devRef}
+          display={display}
+        />
       </DefaultLayout>
     </>
   );

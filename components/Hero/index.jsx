@@ -1,7 +1,70 @@
 import { useState } from "react";
 import { Col, Row } from "../Grid";
 import styled from "styled-components";
-import Emoji from "react-apple-emojis";
+import Container from "../Container";
+import Image from "next/image";
+
+const HomeWrap = styled(Container)`
+  height: calc(100vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    font-size: 96px;
+    line-height: 84px;
+    margin-bottom: 36px;
+    margin-top: 240px;
+    cursor: none !important;
+  }
+  h2 {
+    font-size: 34px;
+    line-height: 42px;
+    .color {
+      color: #0ac959;
+    }
+  }
+  .break {
+    display: none;
+    @media (max-width: 550px) {
+      display: block;
+    }
+  }
+  @media (max-width: 1100px) {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+  @media (max-width: 900px) {
+    .headline {
+      width: 100%;
+    }
+    .rowFix {
+      flex-direction: column;
+      width: 100%;
+
+      > div {
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 769px) {
+    h1 {
+      font-size: 72px;
+      line-height: 60px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 30px;
+      line-height: 42px;
+    }
+    img {
+      max-width: 60px;
+    }
+  }
+  > div {
+    width: 100%;
+  }
+`;
 
 const TitleLink = styled.button`
   background-color: transparent;
@@ -9,83 +72,39 @@ const TitleLink = styled.button`
   padding: 0;
   font-style: italic;
   position: relative;
-  // cursor: pointer;
   span {
-    ::before {
-      display: none;
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background-color: #252529;
-      bottom: 0;
-      z-index: -1;
-    }
-    ::after {
-      content: "";
-      position: absolute;
-      left: 60px;
-      width: 30px;
-      height: 30px;
-      background-color: #fafaed;
-      bottom: -20px;
-      z-index: -1;
-      transform: rotate(10deg);
-    }
-    &.dev {
+    &.dev,
+    &.des {
+      color: #fafaed;
+      padding-right: 6px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
       ::after {
         content: "";
         position: absolute;
-        left: 100px;
-        width: 20px;
-        height: 30px;
-        background-color: #fafaed;
-        bottom: -20px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #252529;
         z-index: -1;
-        transform: rotate(10deg);
+      }
+      :hover {
+        color: #252529;
+        ::after {
+          background-color: #0ac959;
+        }
       }
     }
-  }
-  ::before {
-    content: "";
-    width: 24px;
-    height: 24px;
-    background-color: #252529;
-    transform: rotate(45deg);
-    position: absolute;
-    top: -24px;
-    left: calc(50% - 12px);
-    display: ${(props) => (props.seeMore ? "flex" : "none")};
-  }
-  ::after {
-    content: "See more";
-    font-size: 20px;
-    line-height: 20px;
-    color: #fafaed;
-    width: 100%;
-    height: 36px;
-    background-color: #252529;
-    border-radius: 100px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: -84px;
-    left: 0;
-    padding: 36px 0;
-    display: ${(props) => (props.seeMore ? "flex" : "none")};
-    border: solid 3px #fafaed;
   }
 `;
 
 const ContactButton = styled.button``;
 
 const TitleLinkWrap = ({ children, theRef }) => {
-  const [seeMore, setSeeMore] = useState(false);
   return (
     <TitleLink
-      seeMore={seeMore}
       onClick={() =>
         theRef.current.scrollIntoView({
           behavior: "smooth",
@@ -93,42 +112,52 @@ const TitleLinkWrap = ({ children, theRef }) => {
           inline: "nearest",
         })
       }
-      onMouseEnter={() => setSeeMore(true)}
-      onMouseLeave={() => setSeeMore(false)}
     >
       {children}
     </TitleLink>
   );
 };
 
-const Hero = ({ setShowDef, devRef, desRef }) => {
+const Hero = ({ setShowDef, devRef, desRef, isTouchDevice }) => {
   return (
-    <>
+    <HomeWrap>
       <Row>
-        <Col width={[1, 1 / 2, 1 / 2]}>
+        <Col width={[1, 1 / 2, 1 / 2]} className="headline">
           <h1
             onMouseEnter={() => setShowDef(true)}
             onMouseLeave={() => setShowDef(false)}
+            onClick={() => {
+              isTouchDevice && setShowDef(true);
+            }}
           >
             Unicorns
             <br />
             are real{" "}
-            <Emoji
-              name="unicorn"
-              width={72}
-              style={{ marginBottom: `-12px` }}
-            />
+            <span
+              style={{
+                marginLeft: `-12px`,
+                marginTop: `0px`,
+                display: `inline-block`,
+              }}
+            >
+              <Image
+                src="/emoji/unicorn.png"
+                width={84}
+                height={84}
+                fill="fill"
+              />
+            </span>
           </h1>
         </Col>
       </Row>
-      <Row>
+      <Row className="rowFix">
         <Col width={[1, 1 / 2, 1 / 2]}>
           <h2>
-            I am a{" "}
+            I am a <span className="break"></span>
             <TitleLinkWrap theRef={desRef}>
               <span className="des">designer</span>
             </TitleLinkWrap>{" "}
-            <span className="color">&</span>{" "}
+            <span>&</span>{" "}
             <TitleLinkWrap theRef={devRef}>
               <span className="dev">developer</span>
             </TitleLinkWrap>{" "}
@@ -136,14 +165,14 @@ const Hero = ({ setShowDef, devRef, desRef }) => {
           </h2>
         </Col>
         <Col width={[1, 1 / 2, 1 / 2]}>
-          <p style={{ marginTop: `6px` }}>
+          <p style={{ marginTop: `12px` }}>
             I sepcialise in UX design, building design systems, designing UI’s
             and building UI’s. Im a experianced user researcher and have coded
             many projects from conception to production.{" "}
           </p>
         </Col>
       </Row>
-    </>
+    </HomeWrap>
   );
 };
 
