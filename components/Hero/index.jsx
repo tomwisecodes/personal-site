@@ -64,6 +64,14 @@ const HomeWrap = styled(Container)`
   > div {
     width: 100%;
   }
+  p {
+    font-size: 22px;
+    line-height: 30px;
+    @media (max-width: 769px) {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
 `;
 
 const TitleLink = styled.button`
@@ -163,13 +171,6 @@ const Hero = ({ setShowDef, devRef, desRef, isTouchDevice }) => {
             </TitleLinkWrap>{" "}
             <br /> based in South London
           </h2>
-        </Col>
-        <Col width={[1, 1 / 2, 1 / 2]}>
-          <p style={{ marginTop: `6px` }}>
-            I sepcialise in UX design, building design systems, designing UI’s
-            and building UI’s. Im a experianced user researcher and have also
-            personally coded many projects from conception to production.{" "}
-          </p>
         </Col>
       </Row>
     </HomeWrap>

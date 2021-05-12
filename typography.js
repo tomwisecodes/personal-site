@@ -20,8 +20,8 @@ const theme = {
       lineHeight: "12px",
     },
     "p, a, li, input, textarea": {
-      fontSize: "22px",
-      lineHeight: "30px",
+      fontSize: "19px",
+      lineHeight: "24px",
       fontFamily: "franklin-gothic-urw,sans-serif",
       fontWeight: "400",
       fontStyle: "normal",

@@ -41,6 +41,13 @@ const Skill = styled.li`
   margin: 4px;
 `;
 
+const Statment = styled.p`
+  font-size: 36px;
+  line-height: 42px;
+  max-width: 720px;
+  margin-bottom: 10vh;
+`;
+
 const HomePage = () => {
   const [showdef, setShowDef] = useState(false);
   const [mouseX, setMouseX] = useState(null);
@@ -87,7 +94,8 @@ const HomePage = () => {
     "UI design",
     "Branding",
   ];
-  const { contactTextSource, setContactTextSource } = useContext(BlobContext);
+  const { setContactTextSource } = useContext(BlobContext);
+
   function isTouchDevice() {
     if (typeof window !== "undefined") {
       return (
@@ -140,6 +148,17 @@ const HomePage = () => {
           devRef={devRef}
           isTouchDevice={isTouchDevice}
         />
+        <Section>
+          <Row>
+            <Col width={[1]}>
+              <Statment>
+                I sepcialise in UX design, building design systems, designing
+                UI’s and building UI’s. I'm an experienced front-end developer
+                and have also conducted lots of user research to inform my work.{" "}
+              </Statment>
+            </Col>
+          </Row>
+        </Section>
         <Section ref={workRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
