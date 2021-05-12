@@ -16,9 +16,14 @@ import MobileMenu from "../components/Menu/mobileMenu";
 const Section = styled(Container)`
   padding-top: 96px;
   padding-bottom: 96px;
-  h2 {
-    font-size: 72px;
-    line-height: 84px;
+  h2.statement {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  p.statement {
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 144px;
   }
 `;
 
@@ -159,51 +164,7 @@ const HomePage = () => {
             </Col>
           </Row>
         </Section>
-        <Section ref={workRef}>
-          <Row>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2>My Work</h2>
-              <p>
-                Currently, I am leading the UX, design and Front End in a team
-                supporting a government-funded COVID response in the Education
-                sector (
-                <a
-                  href="https://thenational.academy"
-                  target="_blank"
-                  style={{ color: `#B30DC4` }}
-                >
-                  Oak National Academy
-                </a>
-                ). Being the first designer and the first developer on the
-                project my dual passions allowed us to put the first product out
-                within 7 days of the first square drawn in Figma. Since then,
-                our small but gloriously talented team has scaled to creating 3
-                apps welcoming 3 million users learning from home per week using
-                over 10,000 lessons.
-                <br />
-                <br />
-                Previously to Oak I was working at Pentlands Brands innovation
-                lab leading there UX/UI department. I have headed up digital
-                design at a ed-tech startup, a corn company, contracted at many
-                many agencies, still run my own design studio (putty.studio).
-                And before that I was a full time DJ and mechanical engineer.
-              </p>
-            </Col>
-            <Col
-              width={[1, 1 / 2, 1 / 2]}
-              style={{ display: `flex`, justifyContent: `flex-end` }}
-            >
-              <DesktopMenu
-                mouseX={mouseX}
-                mouseY={mouseY}
-                desRef={desRef}
-                devRef={devRef}
-                workRef={workRef}
-              />
-            </Col>
-            <Col width={[1]}></Col>
-          </Row>
-        </Section>
+
         <Section ref={desRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
@@ -217,8 +178,8 @@ const HomePage = () => {
               />
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2>Designer</h2>
-              <p>
+              <h2 className="statement">Designer</h2>
+              <p className="statement">
                 My one true love is design, I love to learn and implement new
                 practises in the world of UX adding value to users and stake
                 holders alike.
@@ -262,10 +223,11 @@ const HomePage = () => {
                 onClick={() => {
                   setContactTextSource("social");
                 }}
+                className="statement"
               >
                 Developer
               </h2>
-              <p>
+              <p className="statement">
                 I have produced and worked on production sites using with
                 WordPress and JS frame works. I'm most comfy sitting on the
                 front end making things pixel perfect. At the moment I favour
@@ -306,6 +268,40 @@ const HomePage = () => {
                 </Button>
               </FlexWrapper>
             </Col>
+          </Row>
+        </Section>
+        <Section ref={workRef}>
+          <Row>
+            <Col width={[1]}>
+              <h2>My Work</h2>
+              <p>
+                Currently, I am leading the UX, design and Front End in a team
+                supporting a government-funded COVID response in the Education
+                sector (
+                <a
+                  href="https://thenational.academy"
+                  target="_blank"
+                  style={{ color: `#B30DC4` }}
+                >
+                  Oak National Academy
+                </a>
+                ). Being the first designer and the first developer on the
+                project my dual passions allowed us to put the first product out
+                within 7 days of the first square drawn in Figma. Since then,
+                our small but gloriously talented team has scaled to creating 3
+                apps welcoming 3 million users learning from home per week using
+                over 10,000 lessons.
+                <br />
+                <br />
+                Previously to Oak I was working at Pentlands Brands innovation
+                lab leading there UX/UI department. I have headed up digital
+                design at a ed-tech startup, a corn company, contracted at many
+                many agencies, still run my own design studio (putty.studio).
+                And before that I was a full time DJ and mechanical engineer.
+              </p>
+            </Col>
+
+            <Col width={[1]}></Col>
           </Row>
         </Section>
         {/* <Section >

@@ -62,8 +62,9 @@ const LogoContain = styled.ul`
     justify-content: center;
     text-align: center;
     li {
-      font-size: 30px;
-      line-height: 36px;
+      width: 100%;
+      font-size: 36px;
+      line-height: 42px;
     }
   }
 `;

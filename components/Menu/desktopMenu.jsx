@@ -16,7 +16,7 @@ const MenuOuter = styled.div`
   position: absolute;
   width: 66%;
   height: unset;
-  top: 100px;
+  top: 40px;
 `;
 const MenuWrap = styled.div`
   background-color: #252529;
