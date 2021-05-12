@@ -45,7 +45,6 @@ function WiseyBoyApp({ Component, pageProps }) {
           href="/images/favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/images/favicon/site.webmanifest" />
-
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-VQS4WRDWQT"

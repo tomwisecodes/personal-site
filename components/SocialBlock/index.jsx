@@ -69,9 +69,10 @@ const SocialItem = ({ href, color, text, medium }) => {
 const SocialBlock = ({ color, text }) => {
   return (
     <FlexWrapper
-      justify="space-around"
+      justify="space-between"
       direction="flex-row"
       childrenMarginRight="12px"
+      width="100"
     >
       {socialDeets.map((socialMedium) => (
         <SocialItem

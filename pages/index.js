@@ -3,70 +3,23 @@ import { Col, Row } from "../components/Grid";
 import Container from "../components/Container";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import styled from "styled-components";
-import Link from "next/link";
 import { BlobContext } from "../components/Context/BlobContext";
 import MouseCircle from "../components/MouseCircle";
 import Hero from "../components/Hero";
 import clients from "../data";
-import Image from "next/image";
-
-const HomeWrap = styled(Container)`
-  height: calc(100vh - 144px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  h1 {
-    font-size: 96px;
-    line-height: 84px;
-    margin-bottom: 36px;
-    margin-top: 240px;
-
-    cursor: none !important;
-  }
-  h2 {
-    font-size: 34px;
-    line-height: 42px;
-    .color {
-      color: #0ac959;
-    }
-  }
-  @media (max-width: 769px) {
-    h1 {
-      font-size: 60px;
-      line-height: 60px;
-      margin-bottom: 24px;
-    }
-    h2 {
-      font-size: 24px;
-      line-height: 30px;
-    }
-    img {
-      max-width: 60px;
-    }
-  }
-  > div {
-    width: 100%;
-  }
-`;
+import Button from "../components/Button";
+import FlexWrapper from "../components/FlexWrapper";
+import DesktopMenu from "../components/Menu/desktopMenu";
+import LogoGrid from "../components/LogoGrid";
+import MobileMenu from "../components/Menu/mobileMenu";
 
 const Section = styled(Container)`
   padding-top: 96px;
   padding-bottom: 96px;
   h2 {
-    font-size: 60px;
+    font-size: 72px;
     line-height: 84px;
   }
-`;
-
-const ImageWrap = styled.div`
-  width: 100px;
-  height: 100px;
-  position: relative;
-`;
-const LogoContain = styled.div`
-  display: flex;
-  flex-wrap: wrap;
 `;
 
 const SkillsWrap = styled.ul`
@@ -87,84 +40,54 @@ const Skill = styled.li`
   color: white;
   margin: 4px;
 `;
-const MenuOuter = styled.div`
-  width: 66%;
-  height: unset;
-`;
-const MenuWrap = styled.ul`
-  display: flex;
-  flex-direction: column;
-  background-color: #252529;
-  padding: 24px;
-  border-radius: 12px;
-
-  button,
-  a {
-    color: #fafaed;
-    width: unset;
-    font-size: 30px;
-    line-height: 30px;
-    padding: 6px 12px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    :last-child {
-      margin-bottom: 0;
-    }
-  }
-  p {
-    color: #fafaed;
-    font-size: 24px;
-    padding-left: 12px;
-  }
-`;
-
-const LogoGrid = ({ type }) => {
-  const designerCli = clients.filter((_) => _.ux || _.graphic);
-  const devCli = clients.filter((_) => _.dev);
-  const selectedClients = type === "designer" ? designerCli : devCli;
-  return (
-    <LogoContain>
-      {selectedClients.map((client) => (
-        <ImageWrap key={client.id}>
-          <Image
-            src={client.imageThumb}
-            alt={client.clientName + `logo`}
-            layout="fill"
-          />
-        </ImageWrap>
-      ))}
-    </LogoContain>
-  );
-};
-
-const Menu = () => {
-  return (
-    <MenuOuter>
-      <MenuWrap>
-        <p>Menu</p>
-        <li>
-          <button>My Work</button>
-        </li>
-        <li>
-          <button>Designer</button>
-        </li>
-        <li>
-          <button>Developer</button>
-        </li>
-        <li>
-          <button>Bio</button>
-        </li>
-      </MenuWrap>
-    </MenuOuter>
-  );
-};
 
 const HomePage = () => {
-  const { setContact, setContactTextSource } = useContext(BlobContext);
   const [showdef, setShowDef] = useState(false);
+  const [mouseX, setMouseX] = useState(null);
+  const [mouseY, setMouseY] = useState(null);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [display, setDisplay] = useState(true);
   const desRef = useRef();
   const devRef = useRef();
+  const workRef = useRef();
+  const cricleRef = useRef();
+  const devExp = [
+    "Next.js",
+    "Gatsby",
+    "React.js",
+    "Vercel",
+    "GraphQL",
+    "StoryBook",
+    "Github",
+    "WordPress",
+    "mySQL",
+    "deployHQ",
+    "bitBucket",
+  ];
+  const desSkill = [
+    "Figma",
+    "FramrX",
+    "Full Adobe suite",
+    "Sketch",
+    "Google Analytics",
+    "Google Optimize",
+    "MixPanel",
+    "HotJar",
+  ];
+  const desExp = [
+    "Design Thinking",
+    "User Centered Design",
+    "Building Design Systems",
+    "Qualative User Research",
+    "Usability Testing",
+    "Building Personas",
+    "Quantitative Research",
+    "A/B Testing",
+    "Wireframing",
+    "UI design",
+    "Branding",
+  ];
+  const { contactTextSource, setContactTextSource } = useContext(BlobContext);
   function isTouchDevice() {
     if (typeof window !== "undefined") {
       return (
@@ -178,31 +101,67 @@ const HomePage = () => {
   useEffect(() => {
     isTouchDevice();
   }, []);
+  useEffect(() => {
+    if (window === "undefined") {
+      return null;
+    }
+    const setFromEvent = (e) => {
+      setMouseX(e.pageX);
+      setMouseY(e.pageY);
+    };
+    window.addEventListener("mousemove", setFromEvent);
+    return () => {
+      window.removeEventListener("mousemove", setFromEvent);
+    };
+  }, []);
+  useEffect(() => {
+    if (isTouchDevice() === false) {
+      cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0)`;
+    }
+  }, [mouseX, mouseY]);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    setDisplay(prevScrollPos > currentScrollPos || currentScrollPos < 100);
+    setPrevScrollPos(currentScrollPos);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, display, handleScroll]);
   return (
     <>
-      <DefaultLayout>
-        {isTouchDevice && <MouseCircle showdef={showdef} />}
-        <HomeWrap>
-          <Hero
-            showdef={showdef}
-            setShowDef={setShowDef}
-            desRef={desRef}
-            devRef={devRef}
-          />
-        </HomeWrap>
-        {/* <Section>
+      <DefaultLayout display={display}>
+        <Hero
+          showdef={showdef}
+          setShowDef={setShowDef}
+          desRef={desRef}
+          devRef={devRef}
+          isTouchDevice={isTouchDevice}
+        />
+        <Section ref={workRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>My Work</h2>
               <p>
-                Currently, I am leading the UX/UI design and Front End in a team
+                Currently, I am leading the UX, design and Front End in a team
                 supporting a government-funded COVID response in the Education
-                sector(Oak National Academy). Being the first designer and the
-                first developer on the project my dual passions allowed us to
-                put the first product out within 7 days of the first square
-                drawn in Figma. Since then, our small but gloriously talented
-                team has scaled to creating 3 apps welcoming 3 million users
-                learning from home per week using over 10,000 lessons.
+                sector (
+                <a
+                  href="https://thenational.academy"
+                  target="_blank"
+                  style={{ color: `#B30DC4` }}
+                >
+                  Oak National Academy
+                </a>
+                ). Being the first designer and the first developer on the
+                project my dual passions allowed us to put the first product out
+                within 7 days of the first square drawn in Figma. Since then,
+                our small but gloriously talented team has scaled to creating 3
+                apps welcoming 3 million users learning from home per week using
+                over 10,000 lessons.
+                <br />
                 <br />
                 Previously to Oak I was working at Pentlands Brands innovation
                 lab leading there UX/UI department. I have headed up digital
@@ -215,7 +174,13 @@ const HomePage = () => {
               width={[1, 1 / 2, 1 / 2]}
               style={{ display: `flex`, justifyContent: `flex-end` }}
             >
-              <Menu />
+              <DesktopMenu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
             </Col>
             <Col width={[1]}></Col>
           </Row>
@@ -223,7 +188,14 @@ const HomePage = () => {
         <Section ref={desRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <LogoGrid clients={clients} type="designer" />
+              <DesktopMenu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                left={true}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
               <h2>Designer</h2>
@@ -234,36 +206,46 @@ const HomePage = () => {
               </p>
               <h3>Well Practised in:</h3>
               <SkillsWrap>
-                <Skill>Design Thinking</Skill>
-                <Skill>User Centered Design</Skill>
-                <Skill>Building Design Systems</Skill>
-                <Skill>Qualative User Research</Skill>
-                <Skill>Usability Testing</Skill>
-                <Skill>Building Personas</Skill>
-                <Skill>Quantitative Research</Skill>
-                <Skill>A/B Testing</Skill>
-                <Skill>Wireframing</Skill>
-                <Skill>UI design</Skill>
-                <Skill>Branding</Skill>
+                {desExp.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
               <h3>Love using:</h3>
               <SkillsWrap>
-                <Skill>Figma</Skill>
-                <Skill>FramrX</Skill>
-                <Skill>Full Adobe suite</Skill>
-                <Skill>Sketch</Skill>
-                <Skill>Google Analytics</Skill>
-                <Skill>Google Optimize</Skill>
-                <Skill>MixPanel</Skill>
-                <Skill>HotJar</Skill>
+                {desSkill.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
+            </Col>
+            <Col width={[1]}>
+              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
+                Notable design projects:
+              </h3>
+              <LogoGrid
+                clients={clients}
+                mouseX={mouseX}
+                mouseY={mouseY}
+                type="designer"
+                mt="0px"
+              />
+              <FlexWrapper justify="center">
+                <Button onClick={() => setContactTextSource("portfolio")}>
+                  Request Portfolio
+                </Button>
+              </FlexWrapper>
             </Col>
           </Row>
         </Section>
         <Section ref={devRef}>
           <Row>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2>Developer</h2>
+              <h2
+                onClick={() => {
+                  setContactTextSource("social");
+                }}
+              >
+                Developer
+              </h2>
               <p>
                 I have produced and worked on production sites using with
                 WordPress and JS frame works. I'm most comfy sitting on the
@@ -272,24 +254,58 @@ const HomePage = () => {
               </p>
               <h3>Experience with:</h3>
               <SkillsWrap>
-                <Skill>Next.js</Skill>
-                <Skill>Gatsby</Skill>
-                <Skill>React.js</Skill>
-                <Skill>Vercel</Skill>
-                <Skill>GraphQL</Skill>
-                <Skill>StoryBook</Skill>
-                <Skill>Github</Skill>
-                <Skill>WordPress</Skill>
-                <Skill>mySQL</Skill>
-                <Skill>deployHQ</Skill>
-                <Skill>bitBucket</Skill>
+                {devExp.map((exp) => (
+                  <Skill key={exp}>{exp}</Skill>
+                ))}
               </SkillsWrap>
             </Col>
             <Col width={[1, 1 / 2, 1 / 2]}>
-              <LogoGrid type="developer" clients={clients} />
+              <DesktopMenu
+                mouseX={mouseX}
+                mouseY={mouseY}
+                desRef={desRef}
+                devRef={devRef}
+                workRef={workRef}
+              />
+            </Col>
+            <Col width={[1]}>
+              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
+                Notable dev projects:
+              </h3>
+              <LogoGrid
+                clients={clients}
+                mouseX={mouseX}
+                mouseY={mouseY}
+                type="developer"
+                mt="0px"
+              />
+            </Col>
+            <Col width={[1]}>
+              <FlexWrapper justify="center">
+                <Button onClick={() => setContactTextSource("portfolio")}>
+                  Request Portfolio
+                </Button>
+              </FlexWrapper>
             </Col>
           </Row>
+        </Section>
+        {/* <Section >
+          <p>{inView.toString()}</p>
         </Section> */}
+        {isTouchDevice && (
+          <MouseCircle
+            cricleRef={cricleRef}
+            showdef={showdef}
+            setShowDef={setShowDef}
+            isTouchDevice={isTouchDevice}
+          />
+        )}
+        <MobileMenu
+          workRef={workRef}
+          desRef={desRef}
+          devRef={devRef}
+          display={display}
+        />
       </DefaultLayout>
     </>
   );

@@ -7,7 +7,7 @@ const theme = {
   baseFontSize: "12px",
   baseLineHeight: "12px",
   headerFontFamily: ["Rigton-Medium", "sans-serif"],
-  bodyFontFamily: ["bely", "serif"],
+  bodyFontFamily: ["franklin-gothic-urw", "sans-serif"],
   headerColor: "#252529",
   bodyColor: "#252529",
   headerWeight: 400,
@@ -20,12 +20,15 @@ const theme = {
       lineHeight: "12px",
     },
     "p, a, li, input, textarea": {
-      fontSize: "24px",
-      lineHeight: "36px",
+      fontSize: "22px",
+      lineHeight: "30px",
+      fontFamily: "franklin-gothic-urw,sans-serif",
+      fontWeight: "400",
+      fontStyle: "normal",
+      letterSpacing: "0.5px",
     },
     p: {
       marginBottom: "12px",
-      fontFamily: "bely",
     },
     li: {
       marginBottom: "12px",

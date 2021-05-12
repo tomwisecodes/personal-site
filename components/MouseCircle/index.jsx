@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
+import MobileClose from "../MobileClose";
 
 const hover = keyframes`
   0% { 
@@ -19,16 +20,14 @@ const hover = keyframes`
 
 const Circle = styled.div`
   position: absolute;
-
   background-color: transparent;
   cursor: none !important;
-  top: -240px;
+  top: -280px;
   left: 0px;
   max-width: 396px;
   margin-right: 24px;
   padding: 24px;
   visibility: ${(props) => (props.showdef ? "visible" : "hidden")};
-
   transition-duration: ${(props) => (props.showdef ? "0" : "0.3s")};
   pointer-events: none;
   ::before {
@@ -56,7 +55,15 @@ const Circle = styled.div`
     transition-timing-function: ease-in-out;
   }
   @media (max-width: 900px) {
-    display: none;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 const Label = styled.p`
@@ -71,54 +78,11 @@ const Source = styled.p`
   font-style: italic;
 `;
 
-const MouseCircle = ({ showdef }) => {
-  const cricleRef = useRef();
-  const [mouseX, setMouseX] = useState(null);
-  const [mouseY, setMouseY] = useState(null);
-  const [mouseMove, setMouseMove] = useState(null);
-  const [linkHovered, setLinkHovered] = useState(false);
-
-  const handleLinkHoverEvents = () => {
-    document.querySelectorAll("a").forEach((el) => {
-      el.addEventListener("mouseover", () => setLinkHovered(true));
-      el.addEventListener("mouseout", () => setLinkHovered(false));
-    });
-    document.querySelectorAll("button", ".hover").forEach((el) => {
-      el.addEventListener("mouseover", () => setLinkHovered(true));
-      el.addEventListener("mouseout", () => setLinkHovered(false));
-    });
-  };
-
-  useEffect(() => {
-    if (window === "undefined") {
-      return null;
-    }
-    const setFromEvent = (e) => {
-      setMouseX(e.pageX);
-      setMouseY(e.pageY);
-    };
-    const mouseMoving = () => {
-      setMouseMove(true);
-    };
-
-    handleLinkHoverEvents();
-
-    window.addEventListener("mousemove", setFromEvent);
-    // window.addEventListener("mousemove", mouseMoving);
-    // window.addEventListener("mousemove", mouseTrail);
-
-    return () => {
-      window.removeEventListener("mousemove", setFromEvent);
-    };
-  }, []);
-
-  useEffect(() => {
-    cricleRef.current.style.transform = `translate3d( ${mouseX}px, ${mouseY}px, 0) `;
-  }, [mouseX, mouseY]);
-
+const MouseCircle = ({ showdef, cricleRef, setShowDef, isTouchDevice }) => {
   return (
     <>
       <Circle ref={cricleRef} showdef={showdef}>
+        {!!isTouchDevice() && <MobileClose onClick={() => setShowDef(false)} />}
         <Label>"UX Unicorn"</Label>
         <Label>noun</Label>
         <p>

@@ -1,7 +1,7 @@
 import ButtonWrap from "./styled";
 
-const Button = ({ children }) => {
-  return <ButtonWrap>{children}</ButtonWrap>;
+const Button = ({ children, onClick }) => {
+  return <ButtonWrap onClick={onClick}>{children}</ButtonWrap>;
 };
 
 export default Button;

@@ -3,95 +3,29 @@ import { Row, Col } from "../../components/Grid";
 import PageTitle from "../../components/PageTitle";
 import styled from "styled-components";
 import Container from "../../components/Container";
+import handleViewport from "react-in-viewport";
 
-const SpaceBetween = styled(Row)`
-  justify-content: space-between;
-`;
-
-const SkillsWrap = styled.ul`
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-left: -6px;
-  margin-right: -6px;
-`;
-
-const Skill = styled.li`
-  padding: 6px;
-  line-height: 16px;
-  font-size: 16px;
-  background-color: #0800c9;
-  color: white;
-  margin: 4px;
-`;
-
-const TechPage = () => {
+const Block = (props: { inViewport: boolean }) => {
+  const { inViewport, forwardedRef } = props;
+  const color = inViewport ? "#217ac0" : "#ff9800";
+  const text = inViewport ? "In viewport" : "Not in viewport";
   return (
-    <DefaultLayout>
-      <Container>
-        <PageTitle title="skills" />
-        <SpaceBetween style={{ marginTop: `72px` }}>
-          <Col width={[1, 1, 5 / 12]} mb="72px">
-            <h2>Code</h2>
-            <p>
-              I have produced and worked on production sites using with
-              WordPress and JS frame works. I'm most comfy sitting on the front
-              end making things pixel perfect. At the moment I favour working
-              with Next.JS.
-            </p>
-            <h3>Experience with:</h3>
-            <SkillsWrap>
-              <Skill>Next.js</Skill>
-              <Skill>Gatsby</Skill>
-              <Skill>React.js</Skill>
-              <Skill>Vercel</Skill>
-              <Skill>GraphQL</Skill>
-              <Skill>StoryBook</Skill>
-              <Skill>Github</Skill>
-              <Skill>WordPress</Skill>
-              <Skill>mySQL</Skill>
-              <Skill>deployHQ</Skill>
-              <Skill>bitBucket</Skill>
-            </SkillsWrap>
-          </Col>
-          <Col width={[1, 1, 5 / 12]}>
-            <h2>Design</h2>
-            <p>
-              My one true love is design, I love to learn and implement new
-              practises in the world of UX adding value to users and stake
-              holders alike.
-            </p>
-            <h3>Well Practised in:</h3>
-            <SkillsWrap>
-              <Skill>Design Thinking</Skill>
-              <Skill>User Centered Design</Skill>
-              <Skill>Building Design Systems</Skill>
-              <Skill>Qualative User Research</Skill>
-              <Skill>Usability Testing</Skill>
-              <Skill>Building Personas</Skill>
-              <Skill>Quantitative Research</Skill>
-              <Skill>A/B Testing</Skill>
-              <Skill>Wireframing</Skill>
-              <Skill>UI design</Skill>
-              <Skill>Branding</Skill>
-            </SkillsWrap>
-            <h3>Love using:</h3>
-            <SkillsWrap>
-              <Skill>Figma</Skill>
-              <Skill>FramrX</Skill>
-              <Skill>Full Adobe suite</Skill>
-              <Skill>Sketch</Skill>
-              <Skill>Google Analytics</Skill>
-              <Skill>Google Optimize</Skill>
-              <Skill>MixPanel</Skill>
-              <Skill>HotJar</Skill>
-            </SkillsWrap>
-          </Col>
-        </SpaceBetween>
-      </Container>
-    </DefaultLayout>
+    <div className="viewport-block" ref={forwardedRef}>
+      <h3>{text}</h3>
+      <div style={{ width: "400px", height: "300px", background: color }} />
+    </div>
   );
 };
 
-export default TechPage;
+const ViewportBlock = handleViewport(Block /** options: {}, config: {} **/);
+
+const Component = (props) => (
+  <div>
+    <div style={{ height: "100vh" }}>
+      <h2>Scroll down to make component in viewport</h2>
+    </div>
+    <ViewportBlock />
+  </div>
+);
+
+export default Component;
