@@ -7,9 +7,9 @@ const MenuInnerWrap = styled.ul`
   a {
     color: #fafaed;
     width: unset;
-    font-size: 30px;
-    line-height: 30px;
-    padding: 6px 12px;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 4px 12px;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -19,7 +19,7 @@ const MenuInnerWrap = styled.ul`
   }
   p {
     color: #fafaed;
-    font-size: 24px;
+    font-size: 20px;
     padding-left: 12px;
   }
 `;

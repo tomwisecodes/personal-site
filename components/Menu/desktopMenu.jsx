@@ -16,7 +16,7 @@ const MenuOuter = styled.div`
   position: absolute;
   width: 66%;
   height: unset;
-  top: 40px;
+  top: 6px;
 `;
 const MenuWrap = styled.div`
   background-color: #252529;
@@ -26,6 +26,9 @@ const MenuWrap = styled.div`
   margin-top: ${(props) => (props.show ? "0px" : "80px")};
   transition-duration: 0.6s;
   transition-delay: 0.4s;
+  p {
+    color: #fafaed !important;
+  }
 `;
 
 const DesktopMenu = ({ show, left, desRef, devRef, workRef }) => {

@@ -1,55 +1,25 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Col, Row } from "../components/Grid";
 import Container from "../components/Container";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import styled from "styled-components";
-import { BlobContext } from "../components/Context/BlobContext";
 import MouseCircle from "../components/MouseCircle";
 import Hero from "../components/Hero";
 import clients from "../data";
-import Button from "../components/Button";
-import FlexWrapper from "../components/FlexWrapper";
-import DesktopMenu from "../components/Menu/desktopMenu";
-import LogoGrid from "../components/LogoGrid";
 import MobileMenu from "../components/Menu/mobileMenu";
+import FirstLoad from "../components/FirstLoad";
+import SkillSection from "../components/SkillSection";
 
 const Section = styled(Container)`
   padding-top: 96px;
   padding-bottom: 96px;
-  h2.statement {
-    font-size: 24px;
-    line-height: 24px;
-  }
-  p.statement {
-    font-size: 36px;
-    line-height: 42px;
-    margin-bottom: 144px;
-  }
-`;
-
-const SkillsWrap = styled.ul`
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-left: -6px;
-  margin-right: -6px;
-`;
-
-const Skill = styled.li`
-  padding: 6px;
-  line-height: 16px;
-  font-size: 16px;
-  color: #fafaed;
-  background-color: #252529;
-  color: white;
-  margin: 4px;
+  align-items: center;
 `;
 
 const Statment = styled.p`
   font-size: 36px;
   line-height: 42px;
-  max-width: 720px;
+  max-width: 760px;
   margin-bottom: 10vh;
 `;
 
@@ -99,7 +69,6 @@ const HomePage = () => {
     "UI design",
     "Branding",
   ];
-  const { setContactTextSource } = useContext(BlobContext);
 
   function isTouchDevice() {
     if (typeof window !== "undefined") {
@@ -135,17 +104,18 @@ const HomePage = () => {
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
-    setDisplay(prevScrollPos > currentScrollPos || currentScrollPos < 100);
+    setDisplay(!!(prevScrollPos > currentScrollPos || currentScrollPos < 100));
     setPrevScrollPos(currentScrollPos);
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, display, handleScroll]);
+
   return (
     <>
-      <DefaultLayout display={display}>
+      <FirstLoad />
+      <DefaultLayout display={!!display}>
         <Hero
           showdef={showdef}
           setShowDef={setShowDef}
@@ -158,119 +128,42 @@ const HomePage = () => {
             <Col width={[1]}>
               <Statment>
                 I sepcialise in UX design, building design systems, designing
-                UI’s and building UI’s. I'm an experienced front-end developer
-                and have also conducted lots of user research to inform my work.{" "}
+                UI’s and building UI’s. I'm an seasoned front-end developer and
+                have plenty of experience conducting user research.{" "}
               </Statment>
             </Col>
           </Row>
         </Section>
+        {/* <SkillSection
+          skill="design"
+          desRef={desRef}
+          clients={clients}
+          mouseX={mouseX}
+          mouseY={mouseY}
+          desRef={desRef}
+          devRef={devRef}
+          workRef={workRef}
+          devExp={devExp}
+          desSkill={desSkill}
+          desExp={desExp}
+          clients={clients}
+        />
+        <SkillSection
+          skill="developer"
+          desRef={desRef}
+          clients={clients}
+          mouseX={mouseX}
+          mouseY={mouseY}
+          desRef={desRef}
+          devRef={devRef}
+          workRef={workRef}
+          devExp={devExp}
+          desSkill={desSkill}
+          desExp={desExp}
+          clients={clients}
+        /> */}
 
-        <Section ref={desRef}>
-          <Row>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <DesktopMenu
-                mouseX={mouseX}
-                mouseY={mouseY}
-                left={true}
-                desRef={desRef}
-                devRef={devRef}
-                workRef={workRef}
-              />
-            </Col>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2 className="statement">Designer</h2>
-              <p className="statement">
-                My one true love is design, I love to learn and implement new
-                practises in the world of UX adding value to users and stake
-                holders alike.
-              </p>
-              <h3>Well Practised in:</h3>
-              <SkillsWrap>
-                {desExp.map((exp) => (
-                  <Skill key={exp}>{exp}</Skill>
-                ))}
-              </SkillsWrap>
-              <h3>Love using:</h3>
-              <SkillsWrap>
-                {desSkill.map((exp) => (
-                  <Skill key={exp}>{exp}</Skill>
-                ))}
-              </SkillsWrap>
-            </Col>
-            <Col width={[1]}>
-              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
-                Notable design projects:
-              </h3>
-              <LogoGrid
-                clients={clients}
-                mouseX={mouseX}
-                mouseY={mouseY}
-                type="designer"
-                mt="0px"
-              />
-              <FlexWrapper justify="center">
-                <Button onClick={() => setContactTextSource("portfolio")}>
-                  Request Portfolio
-                </Button>
-              </FlexWrapper>
-            </Col>
-          </Row>
-        </Section>
-        <Section ref={devRef}>
-          <Row>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <h2
-                onClick={() => {
-                  setContactTextSource("social");
-                }}
-                className="statement"
-              >
-                Developer
-              </h2>
-              <p className="statement">
-                I have produced and worked on production sites using with
-                WordPress and JS frame works. I'm most comfy sitting on the
-                front end making things pixel perfect. At the moment I favour
-                working with Next.JS.
-              </p>
-              <h3>Experience with:</h3>
-              <SkillsWrap>
-                {devExp.map((exp) => (
-                  <Skill key={exp}>{exp}</Skill>
-                ))}
-              </SkillsWrap>
-            </Col>
-            <Col width={[1, 1 / 2, 1 / 2]}>
-              <DesktopMenu
-                mouseX={mouseX}
-                mouseY={mouseY}
-                desRef={desRef}
-                devRef={devRef}
-                workRef={workRef}
-              />
-            </Col>
-            <Col width={[1]}>
-              <h3 style={{ textAlign: `center`, margin: `72px 0 24px 0` }}>
-                Notable dev projects:
-              </h3>
-              <LogoGrid
-                clients={clients}
-                mouseX={mouseX}
-                mouseY={mouseY}
-                type="developer"
-                mt="0px"
-              />
-            </Col>
-            <Col width={[1]}>
-              <FlexWrapper justify="center">
-                <Button onClick={() => setContactTextSource("portfolio")}>
-                  Request Portfolio
-                </Button>
-              </FlexWrapper>
-            </Col>
-          </Row>
-        </Section>
-        <Section ref={workRef}>
+        {/* <Section ref={workRef} black={true}>
           <Row>
             <Col width={[1]}>
               <h2>My Work</h2>
@@ -303,7 +196,7 @@ const HomePage = () => {
 
             <Col width={[1]}></Col>
           </Row>
-        </Section>
+        </Section> */}
         {/* <Section >
           <p>{inView.toString()}</p>
         </Section> */}

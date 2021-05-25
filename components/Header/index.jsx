@@ -65,7 +65,7 @@ const Header = ({ display }) => {
 
   const { setContactTextSource } = useContext(BlobContext);
   return (
-    <HeaderWrap display={display}>
+    <HeaderWrap display={!!display}>
       <Logo>Tom Wise</Logo>
       <SayHello
         onClick={() => {

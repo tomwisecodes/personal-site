@@ -174,7 +174,7 @@ const clients = [
   },
   {
     id: "18",
-    clientName: "M & S",
+    clientName: "M&S",
     imageThumb: "/images/logos/mns-logo.png",
     displayImage: "",
     ux: false,

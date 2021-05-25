@@ -49,11 +49,14 @@ const LogoContain = styled.ul`
   justify-content: center;
   margin-top: ${(props) => (props.mt ? props.mt : "0px")};
   li {
-    font-size: 34px;
-    line-height: 42px;
-    margin-right: 12px;
+    font-size: 36px;
+    line-height: 36px;
+    margin-right: 8px;
     cursor: default;
     position: relative;
+    :hover {
+      color: #0ac959;
+    }
     @media (max-width: 769px) {
       z-index: -1;
     }
